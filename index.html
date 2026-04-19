@@ -249,11 +249,11 @@
         .footer-left { text-align: left; }
         .footer-center { text-align: center; color: var(--accent); font-weight: bold; }
         .footer-right { text-align: right; display: flex; justify-content: flex-end; }
-        .social-links { display: flex; gap: 1.5rem; justify-content: flex-end; }
-        .social-icon { padding: 10px; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.3s; color: #fff; cursor: none; }
-        .social-icon.ig:hover { border-color: #d6249f; box-shadow: 0 0 15px rgba(214, 36, 159, 0.4); transform: translateY(-3px); }
-        .social-icon.in:hover { border-color: #0A66C2; box-shadow: 0 0 15px rgba(10, 102, 194, 0.4); transform: translateY(-3px); }
-        .social-icon.gh:hover { border-color: #ffffff; box-shadow: 0 0 15px rgba(255, 255, 255, 0.4); transform: translateY(-3px); }
+        .social-links { display: flex; gap: 12px; justify-content: flex-end; }
+        .social-icon { width: 42px; height: 42px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.3s ease; color: #fff; cursor: none; }
+        .social-icon.ig:hover { border-color: #d6249f; box-shadow: 0 0 16px #d6249f; transform: translateY(-3px); }
+        .social-icon.in:hover { border-color: #0A66C2; box-shadow: 0 0 16px #0A66C2; transform: translateY(-3px); }
+        .social-icon.gh:hover { border-color: rgba(255,255,255,0.5); box-shadow: 0 0 16px rgba(255, 255, 255, 0.4); transform: translateY(-3px); }
 
         /* Responsive */
         @media (max-width: 1024px) {
@@ -344,7 +344,7 @@
         <div class="about-content">
             <div class="who-i-am reveal">
                 <h2 class="section-title" style="margin-bottom: 0;">Who I Am</h2>
-                <p>A passionate Computer Science undergraduate at APIIT Lanka (Staffordshire University, UK) with a strong interest in cybersecurity, cloud computing, and web development. Royal College Colombo 7 alumnus, 3&times; All-Island Baseball Champion, CTF competitor, and Hackathon participant at APIIT. Driven by curiosity, discipline, and a commitment to building real-world solutions.</p>
+                <p>I am Ganidu Sasmitha Rajapaksha Udage, currently pursuing a BSc (Hons) Computer Science degree at APIIT Lanka (Staffordshire University, UK). My ambition is to become a Cloud Security Engineer. I built a strong foundation of discipline and leadership at Royal College, Colombo 7, serving as Senior Prefect, Senior Steward, and Chief Organizer of the Buddhist Brotherhood. My victory in All-Island Baseball tournaments and participation in the APIIT Hackathon and CTF competition define my drive to perform under pressure. I am actively pursuing AWS certifications and aligning my career toward cloud security roles at firms like IFS Sri Lanka and Dialog Axiata.</p>
             </div>
 
             <div class="what-i-do">
@@ -352,33 +352,33 @@
                 <div class="roles-grid">
                     <div class="role-card reveal">
                         <div class="role-icon">🔐</div>
-                        <h3 class="role-title">Cybersecurity Analyst</h3>
-                        <p class="role-desc">Identify vulnerabilities, monitor threats, and secure systems using cybersecurity fundamentals and CTF experience.</p>
+                        <h3 class="role-title">Cloud Security Engineer</h3>
+                        <p class="role-desc">Securing cloud-native environments using IAM, encryption protocols, and secure infrastructure setups on AWS and Azure. Actively pursuing AWS Security Specialty certification.</p>
                     </div>
                     <div class="role-card reveal">
                         <div class="role-icon">☁️</div>
                         <h3 class="role-title">Cloud Solutions Engineer</h3>
-                        <p class="role-desc">Design and manage cloud infrastructure on AWS, Azure, and Google Cloud with a focus on security and scalability.</p>
+                        <p class="role-desc">Designing and managing enterprise cloud architectures. Experienced in mapping business needs to AWS services including compute, storage, database, and CDN layers.</p>
                     </div>
                     <div class="role-card reveal">
                         <div class="role-icon">🌐</div>
                         <h3 class="role-title">Web Developer</h3>
-                        <p class="role-desc">Build responsive, modern websites and web apps using HTML, CSS, JavaScript, and C#.</p>
+                        <p class="role-desc">Building responsive, modern websites and web apps. Built Gaming4World — a full gaming e-commerce web project with HTML, CSS, JavaScript hosted on GitHub Pages.</p>
                     </div>
                     <div class="role-card reveal">
-                        <div class="role-icon">🖥️</div>
-                        <h3 class="role-title">IT Support Specialist</h3>
-                        <p class="role-desc">Provide technical support, network troubleshooting, and system administration using Linux and networking knowledge.</p>
+                        <div class="role-icon">🛡️</div>
+                        <h3 class="role-title">Cybersecurity Analyst</h3>
+                        <p class="role-desc">Hands-on experience in networking concepts, cyber security, WHOIS lookups, DNS investigations, reconnaissance techniques, and CTF forensics and steganography challenges.</p>
                     </div>
                     <div class="role-card reveal">
                         <div class="role-icon">🗄️</div>
                         <h3 class="role-title">Database Administrator</h3>
-                        <p class="role-desc">Design and manage relational databases using Microsoft SQL Server.</p>
+                        <p class="role-desc">Designing and managing relational database schemas, query optimization, and data integrity using Microsoft SQL Server.</p>
                     </div>
                     <div class="role-card reveal">
-                        <div class="role-icon">🔍</div>
-                        <h3 class="role-title">Security Researcher</h3>
-                        <p class="role-desc">Conduct penetration testing and research using hands-on CTF and hackathon experience.</p>
+                        <div class="role-icon">🖥️</div>
+                        <h3 class="role-title">IT Support & Network Engineer</h3>
+                        <p class="role-desc">Technical troubleshooting, network security operations, firewall configuration, VPN setup, and packet analysis using networking fundamentals.</p>
                     </div>
                 </div>
             </div>
@@ -452,15 +452,15 @@
         <div class="achievements-grid">
             <div class="ach-card full-width reveal">
                 <span class="ach-badge pink">CTF // Win</span>
-                <span class="ach-year">2024</span>
-                <h3 class="ach-title">APIIT CTF Challenge Winner</h3>
-                <p class="ach-desc">Secured first place in the university-level Capture The Flag competition. Demonstrated advanced skills in reverse engineering, cryptography, and network exploitation.</p>
+                <span class="ach-year">2025</span>
+                <h3 class="ach-title">APIIT CTF Challenge</h3>
+                <p class="ach-desc">Participated in the APIIT CTF competition in December 2025, focusing on forensics and steganography challenges. Contributed to the team by solving hidden-data-in-image puzzles, helping increase the team's overall score. Demonstrated collaborative cybersecurity problem solving.</p>
             </div>
             <div class="ach-card reveal">
                 <span class="ach-badge cyan">Hackathon</span>
-                <span class="ach-year">2023</span>
-                <h3 class="ach-title">APIIT Datathon Finalist</h3>
-                <p class="ach-desc">Competed among top teams to analyze complex datasets and present insightful predictive models within a 48-hour time limit.</p>
+                <span class="ach-year">2025</span>
+                <h3 class="ach-title">APIIT Hackathon</h3>
+                <p class="ach-desc">Participated in the 2025 APIIT Hackathon representing our team with the project 'Disaster Response Offline Reporting System' — an offline synchronization system presented to judges from multiple universities. Received a participation certificate. Demonstrated communication and technical presentation skills under intense competition pressure.</p>
             </div>
             <div class="ach-card reveal">
                 <span class="ach-badge purple">Sports</span>
@@ -470,9 +470,9 @@
             </div>
             <div class="ach-card reveal">
                 <span class="ach-badge yellow">Leadership</span>
-                <span class="ach-year">2020</span>
+                <span class="ach-year">2020 - 2022</span>
                 <h3 class="ach-title">Senior Prefect</h3>
-                <p class="ach-desc">Senior Prefect &mdash; Royal College, Colombo 7. Served as a Senior Prefect at one of Sri Lanka's most prestigious schools, demonstrating leadership, discipline, and responsibility at the highest level of school governance. Managed major school events, mentored junior students, and maintained highest levels of discipline within the student body.</p>
+                <p class="ach-desc">Senior Prefect at Royal College, Colombo 7 — one of Sri Lanka's most prestigious schools. Chief Organizer of the Royal College Buddhist Brotherhood, awarded 'A' Grade at Clubs Felicitation 2021/2022 and won Best Publicity Award as Project Chairman of Sankalpana. Senior Steward 2022, Junior Steward 2021.</p>
             </div>
         </div>
     </section>
@@ -506,39 +506,113 @@
     <section id="projects">
         <h2 class="section-title reveal">Projects</h2>
         <div class="projects-grid">
-            <div class="project-card reveal" data-num="01">
+            <div class="project-card reveal" style="border-top: 3px solid var(--accent);" data-num="01">
                 <div class="project-card-header">
-                    <span class="project-type">Security</span>
-                    <h3 class="project-title">Cyber Defense System</h3>
+                    <span class="project-type" style="color: var(--text-muted);">Cloud Computing &middot; COMP50008</span>
+                    <h3 class="project-title" style="font-family: 'Syne', sans-serif; font-weight: 800;">Enterprise Cloud &amp; Infrastructure Automation</h3>
                 </div>
-                <p class="project-desc">A comprehensive threat detection and monitoring system designed to identify anomalies in network traffic using rule-based algorithms.</p>
+                <p class="project-desc" style="font-family: 'Space Mono', monospace; font-size: 0.85rem;">Designed a full AWS cloud architecture for a business use case covering compute (EC2/Lambda), storage (S3), database (RDS), security (IAM, encryption), high availability, scalability, and CDN performance delivery. Mapped business requirements to AWS services with a complete architecture diagram.</p>
                 <div class="project-tags">
-                    <span class="project-tag">Python</span>
+                    <span class="project-tag">AWS</span>
+                    <span class="project-tag">Cloud Architecture</span>
+                    <span class="project-tag">IAM</span>
+                    <span class="project-tag">S3</span>
+                    <span class="project-tag">RDS</span>
                     <span class="project-tag">Security</span>
                 </div>
-            </div>
-            <div class="project-card reveal" data-num="02">
-                <div class="project-card-header">
-                    <span class="project-type">Web Dev</span>
-                    <h3 class="project-title">E-Commerce Platform</h3>
-                </div>
-                <p class="project-desc">A full-stack responsive web application featuring user authentication, product catalog, and secure checkout simulation.</p>
-                <div class="project-tags">
-                    <span class="project-tag">React</span>
-                    <span class="project-tag">Node.js</span>
-                    <span class="project-tag">MongoDB</span>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; align-items: center; position: relative; z-index: 1;">
+                    <a href="Cloud Solution.pdf" download class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem; border-color: var(--accent); color: var(--accent);">&darr; Download</a>
                 </div>
             </div>
-            <div class="project-card reveal" data-num="03">
+
+            <div class="project-card reveal" style="border-top: 3px solid var(--accent2);" data-num="02">
                 <div class="project-card-header">
-                    <span class="project-type">Networking</span>
-                    <h3 class="project-title">Network Simulator</h3>
+                    <span class="project-type" style="color: var(--text-muted);">Cybersecurity &middot; COMP40002 (Group)</span>
+                    <h3 class="project-title" style="font-family: 'Syne', sans-serif; font-weight: 800;">Networking Concepts &amp; Cyber Security</h3>
                 </div>
-                <p class="project-desc">A sophisticated tool crafted to simulate varied network conditions to test routing protocols and fault tolerance mechanisms.</p>
+                <p class="project-desc" style="font-family: 'Space Mono', monospace; font-size: 0.85rem;">Group assignment covering cyber attack reconnaissance techniques, WHOIS lookups, DNS query investigations, domain analysis, and network security concepts. Includes practical hands-on analysis of real-world attack vectors.</p>
                 <div class="project-tags">
-                    <span class="project-tag">C++</span>
-                    <span class="project-tag">Linux</span>
+                    <span class="project-tag">Cybersecurity</span>
                     <span class="project-tag">Networking</span>
+                    <span class="project-tag">DNS</span>
+                    <span class="project-tag">WHOIS</span>
+                    <span class="project-tag">Reconnaissance</span>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; align-items: center; position: relative; z-index: 1;">
+                    <a href="Cyber Security.pdf" download class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem; border-color: var(--accent); color: var(--accent);">&darr; Download</a>
+                </div>
+            </div>
+
+            <div class="project-card reveal" style="border-top: 3px solid var(--accent3);" data-num="03">
+                <div class="project-card-header">
+                    <span class="project-type" style="color: var(--text-muted);">Web Development &middot; COMP40004</span>
+                    <h3 class="project-title" style="font-family: 'Syne', sans-serif; font-weight: 800;">Gaming4World &mdash; Web Project Part 1</h3>
+                </div>
+                <p class="project-desc" style="font-family: 'Space Mono', monospace; font-size: 0.85rem;">Designed and built a full gaming e-commerce website called Gaming4World using HTML, CSS, and JavaScript. Covers the purpose, structure, and design of the web platform. Live site hosted on GitHub Pages.</p>
+                <div class="project-tags">
+                    <span class="project-tag">HTML</span>
+                    <span class="project-tag">CSS</span>
+                    <span class="project-tag">JavaScript</span>
+                    <span class="project-tag">GitHub Pages</span>
+                    <span class="project-tag">UI/UX</span>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; position: relative; z-index: 1;">
+                    <a href="web part 1.pdf" download class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem; border-color: var(--accent); color: var(--accent);">&darr; Download</a>
+                    <a href="https://ganidusasmitha.github.io/gaming4world/index.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent3); font-size: 0.9rem; text-decoration: none; font-weight: bold;">&#128279; Live Site</a>
+                </div>
+            </div>
+
+            <div class="project-card reveal" style="border-top: 3px solid #ffcc00;" data-num="04">
+                <div class="project-card-header">
+                    <span class="project-type" style="color: var(--text-muted);">Web Development &middot; COMP40004</span>
+                    <h3 class="project-title" style="font-family: 'Syne', sans-serif; font-weight: 800;">Gaming4World &mdash; Web Project Part 2</h3>
+                </div>
+                <p class="project-desc" style="font-family: 'Space Mono', monospace; font-size: 0.85rem;">Extended the Gaming4World e-commerce platform with consoles, favorites, cart, product, and payment pages. Includes activity diagrams, HTML/CSS validity testing, WAVE accessibility testing, Lighthouse performance testing on desktop and mobile, and functional tests for the product reservation system.</p>
+                <div class="project-tags">
+                    <span class="project-tag">HTML</span>
+                    <span class="project-tag">CSS</span>
+                    <span class="project-tag">Accessibility</span>
+                    <span class="project-tag">Lighthouse</span>
+                    <span class="project-tag">Testing</span>
+                    <span class="project-tag">Responsive</span>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; position: relative; z-index: 1;">
+                    <a href="web part 2.pdf" download class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem; border-color: var(--accent); color: var(--accent);">&darr; Download</a>
+                    <a href="https://ganidusasmitha.github.io/gamig4world/consoles.html" target="_blank" rel="noopener noreferrer" style="color: #ffcc00; font-size: 0.9rem; text-decoration: none; font-weight: bold;">&#128279; Live Site</a>
+                </div>
+            </div>
+
+            <div class="project-card reveal" style="border-top: 3px solid var(--accent);" data-num="05">
+                <div class="project-card-header">
+                    <span class="project-type" style="color: var(--text-muted);">Database &middot; Level 5</span>
+                    <h3 class="project-title" style="font-family: 'Syne', sans-serif; font-weight: 800;">Database Systems Project</h3>
+                </div>
+                <p class="project-desc" style="font-family: 'Space Mono', monospace; font-size: 0.85rem;">Academic database project covering relational database design, schema creation, and SQL implementation using Microsoft SQL Server. Demonstrates data modeling, query optimization, and data integrity principles.</p>
+                <div class="project-tags">
+                    <span class="project-tag">SQL</span>
+                    <span class="project-tag">MS SQL Server</span>
+                    <span class="project-tag">Database Design</span>
+                    <span class="project-tag">Data Modeling</span>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; align-items: center; position: relative; z-index: 1;">
+                    <a href="Data Base.zip" download class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem; border-color: var(--accent); color: var(--accent);">&darr; Download</a>
+                </div>
+            </div>
+
+            <div class="project-card reveal" style="border-top: 3px solid var(--accent2);" data-num="06">
+                <div class="project-card-header">
+                    <span class="project-type" style="color: var(--text-muted);">Networking &middot; Level 5</span>
+                    <h3 class="project-title" style="font-family: 'Syne', sans-serif; font-weight: 800;">Networking Project</h3>
+                </div>
+                <p class="project-desc" style="font-family: 'Space Mono', monospace; font-size: 0.85rem;">Comprehensive networking assignment covering network infrastructure design, configuration, and security implementation. Includes practical network setups and protocol analysis.</p>
+                <div class="project-tags">
+                    <span class="project-tag">Networking</span>
+                    <span class="project-tag">TCP/IP</span>
+                    <span class="project-tag">Network Security</span>
+                    <span class="project-tag">Infrastructure</span>
+                </div>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; align-items: center; position: relative; z-index: 1;">
+                    <a href="Networkig.zip" download class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem; border-color: var(--accent); color: var(--accent);">&darr; Download</a>
                 </div>
             </div>
         </div>
@@ -552,7 +626,7 @@
             <p>Review my complete academic background, technical skills repository, and documented competition history in my formal Curriculum Vitae.</p>
             <div class="cv-actions">
                 <a href="#" id="btn-preview-cv" class="btn btn-primary">Preview CV</a>
-                <a href="Ganidu Udage CV.pdf" download class="btn btn-primary">Download Official CV</a>
+                <a href="CV_Ganidu.docx" download="CV_Ganidu_Sasmitha.docx" class="btn btn-primary">Download Official CV</a>
             </div>
         </div>
     </section>
@@ -745,7 +819,7 @@
                 </div>
                 
                 <div class="modal-footer">
-                    <a href="Ganidu Udage CV.pdf" download class="btn btn-primary">Download Official CV</a>
+                    <a href="CV_Ganidu.docx" download="CV_Ganidu_Sasmitha.docx" class="btn btn-primary">Download Official CV</a>
                 </div>
             </div>
         </div>
