@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     requestAnimationFrame(renderCursor);
 
-    const interactables = document.querySelectorAll('a, button, input, textarea, .skill-card, .ach-card, .project-card, .role-card, .social-icon, .btn');
+    const interactables = document.querySelectorAll('a, button, input, textarea, .skill-card, .cert-card, .ach-card, .project-card, .role-card, .social-icon, .btn');
     interactables.forEach(el => {
         el.addEventListener('mouseenter', () => {
             cursorRing.style.width = '55px';
@@ -125,6 +125,20 @@ document.addEventListener('DOMContentLoaded', function() {
     setStaggerDelays('.projects-grid', '.project-card', 0.2);
     setStaggerDelays('.timeline', '.timeline-item', 0.25);
     setStaggerDelays('.roles-grid', '.role-card', 0.15);
+
+    /* — CERTIFICATES CAROUSEL — */
+    const certCarousel = document.getElementById('cert-carousel');
+    const certPrev = document.getElementById('certPrev');
+    const certNext = document.getElementById('certNext');
+
+    if (certCarousel && certPrev && certNext) {
+        certNext.addEventListener('click', () => {
+            certCarousel.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+        certPrev.addEventListener('click', () => {
+            certCarousel.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+    }
 
     /* — CV MODAL — */
     const modal = document.getElementById('cv-modal');
