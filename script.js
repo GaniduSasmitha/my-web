@@ -86,28 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
     /* — FILE UPLOAD — */
     // No explicit file upload JS was found in index.html
 
-    /* — CONTACT FORM — */
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const originalText = submitBtn.innerText;
-            
-            // Visual feedback
-            submitBtn.innerText = '✓ Message Sent!';
-            submitBtn.style.backgroundColor = 'var(--accent)';
-            submitBtn.style.color = '#000';
-            
-            setTimeout(() => {
-                submitBtn.innerText = originalText;
-                submitBtn.style.backgroundColor = 'transparent';
-                submitBtn.style.color = 'var(--accent)';
-                contactForm.reset();
-            }, 3000);
-        });
-    }
+    // Form removed, CTA card used instead.
 
     /* — ANIMATION DELAYS — */
     const setStaggerDelays = (containerSelector, itemSelector, delayMultiplier) => {
