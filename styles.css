@@ -504,6 +504,7 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
   margin-bottom: 1rem;
   background: linear-gradient(135deg, var(--accent), var(--accent3));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
