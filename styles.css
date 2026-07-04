@@ -305,6 +305,21 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+.cert-top10-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 200, 0, 0.12);
+    color: #ffc800;
+    font-size: 0.55rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    border: 1px solid rgba(255, 200, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+    z-index: 2;
+}
 
 .scroll-hint-mobile {
     display: none;
