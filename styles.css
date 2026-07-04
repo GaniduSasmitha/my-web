@@ -350,125 +350,6 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
 .project-desc { color: var(--text-muted); margin-bottom: 2rem; position: relative; z-index: 1; flex-grow: 1; }
 .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; position: relative; z-index: 1; }
 .project-tag { font-size: 0.8rem; color: var(--text-muted); padding: 4px 10px; background: rgba(255, 255, 255, 0.05); border-radius: 4px; }
-.project-tag.tag-blue { background: rgba(97, 218, 251, 0.1); color: #61dafb; border: 1px solid rgba(97, 218, 251, 0.25); }
-.project-tag.tag-green { background: rgba(104, 160, 99, 0.1); color: #68a063; border: 1px solid rgba(104, 160, 99, 0.25); }
-.project-tag.tag-purple { background: rgba(162, 89, 255, 0.1); color: var(--accent3); border: 1px solid rgba(162, 89, 255, 0.25); }
-.project-tag.tag-pink { background: rgba(214, 36, 159, 0.1); color: #d6249f; border: 1px solid rgba(214, 36, 159, 0.25); }
-.project-tag.tag-gray { background: rgba(255, 255, 255, 0.08); color: #e0e0e0; border: 1px solid rgba(255, 255, 255, 0.2); }
-
-.project-roles {
-    display: inline-block;
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    border: 1px solid rgba(162, 89, 255, 0.3);
-    background: rgba(162, 89, 255, 0.08);
-    color: var(--accent3);
-    font-size: 0.6rem;
-    margin-top: 0.8rem;
-    margin-bottom: 1.2rem;
-    width: fit-content;
-    font-family: 'Space Mono', monospace;
-    position: relative;
-    z-index: 1;
-}
-.project-team {
-    font-size: 0.68rem;
-    color: var(--text-muted);
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    margin-top: 0.5rem;
-    margin-bottom: 0.8rem;
-    position: relative;
-    z-index: 1;
-}
-.project-flows {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.2rem;
-    position: relative;
-    z-index: 1;
-}
-.flow-pill {
-    background: rgba(0, 229, 255, 0.06);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    font-size: 0.6rem;
-    padding: 0.3rem 0.8rem;
-    color: var(--text-muted);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-}
-.badge-agile {
-    background: rgba(162, 89, 255, 0.1);
-    color: var(--accent3);
-    border: 1px solid rgba(162, 89, 255, 0.25);
-    border-radius: 4px;
-    font-size: 0.65rem;
-    padding: 0.5rem 1rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Space Mono', monospace;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-.badge-top10 {
-    background: rgba(255, 200, 0, 0.1);
-    color: #ffc800;
-    border: 1px solid rgba(255, 200, 0, 0.25);
-    border-radius: 4px;
-    font-size: 0.65rem;
-    padding: 0.5rem 1rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Space Mono', monospace;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-.badge-top-right {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    background: rgba(255, 200, 0, 0.12);
-    color: #ffc800;
-    font-size: 0.55rem;
-    padding: 0.25rem 0.6rem;
-    border-radius: 2px;
-    border: 1px solid rgba(255, 200, 0, 0.3);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    z-index: 2;
-    font-family: 'Space Mono', monospace;
-    font-weight: bold;
-}
-.project-card.card-gradient-a {
-    border-top: none !important;
-    background: linear-gradient(rgba(97, 218, 251, 0.02), rgba(97, 218, 251, 0.02)), var(--surface);
-}
-.project-card.card-gradient-a::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #61dafb, #68a063);
-    z-index: 2;
-}
-.project-card.card-gradient-b {
-    border-top: none !important;
-    background: linear-gradient(rgba(214, 36, 159, 0.02), rgba(214, 36, 159, 0.02)), var(--surface);
-}
-.project-card.card-gradient-b::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #d6249f, #00e5ff);
-    z-index: 2;
-}
 
 /* — CV DOWNLOAD — */
 .cv-box { background: var(--bg); border-radius: 8px; padding: 4rem; text-align: center; position: relative; max-width: 800px; margin: 0 auto; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
@@ -963,10 +844,9 @@ footer { background: var(--surface); padding: 3rem 10%; border-top: 1px solid rg
     .project-desc { font-size: 0.72rem; }
     .project-tags { flex-wrap: wrap; gap: 0.4rem; }
     .project-tag { padding: 3px 8px; font-size: 0.7rem; }
-    .project-card > div:last-child { flex-direction: column; width: 100%; gap: 0.5rem; }
-    .project-card .btn, .project-card .badge-agile, .project-card .badge-top10 { width: 100%; padding: 0.85rem; font-size: 0.9rem !important; text-align: center; }
+    .project-card > div:last-child { flex-direction: column; width: 100%; gap: 0; }
+    .project-card .btn { width: 100%; padding: 0.85rem; font-size: 1rem !important; }
     .project-card > div:last-child > a[target="_blank"] { width: 100%; display: block; text-align: center; padding: 10px 0; margin-top: 0.5rem; }
-    .badge-top-right { top: 1rem; right: 1rem; }
     
     .cv-box { padding: 1.5rem 1.2rem; flex-direction: column; display: flex; }
     .cv-box h3 { font-size: 1.5rem; }
