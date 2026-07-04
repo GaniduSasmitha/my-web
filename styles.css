@@ -366,6 +366,26 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
 .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; position: relative; z-index: 1; }
 .project-tag { font-size: 0.8rem; color: var(--text-muted); padding: 4px 10px; background: rgba(255, 255, 255, 0.05); border-radius: 4px; }
 
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+    text-decoration: none;
+    background: transparent;
+    border: 1px solid var(--accent);
+    padding: 0.6rem 1.2rem;
+    border-radius: 2px;
+    transition: all 0.2s;
+}
+
+.project-link:hover {
+    background: rgba(0, 229, 255, 0.08);
+}
+
 /* — CV DOWNLOAD — */
 .cv-box { background: var(--bg); border-radius: 8px; padding: 4rem; text-align: center; position: relative; max-width: 800px; margin: 0 auto; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
 .cv-box::before { content: ''; position: absolute; inset: -2px; border-radius: 10px; z-index: -1; background: linear-gradient(45deg, var(--accent), var(--accent2), var(--accent3)); }
@@ -860,7 +880,7 @@ footer { background: var(--surface); padding: 3rem 10%; border-top: 1px solid rg
     .project-tags { flex-wrap: wrap; gap: 0.4rem; }
     .project-tag { padding: 3px 8px; font-size: 0.7rem; }
     .project-card > div:last-child { flex-direction: column; width: 100%; gap: 0; }
-    .project-card .btn { width: 100%; padding: 0.85rem; font-size: 1rem !important; }
+    .project-card .btn, .project-card .project-link { width: 100%; padding: 0.85rem; font-size: 1rem !important; justify-content: center; }
     .project-card > div:last-child > a[target="_blank"] { width: 100%; display: block; text-align: center; padding: 10px 0; margin-top: 0.5rem; }
     
     .cv-box { padding: 1.5rem 1.2rem; flex-direction: column; display: flex; }

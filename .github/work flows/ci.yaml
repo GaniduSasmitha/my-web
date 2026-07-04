@@ -1,0 +1,59 @@
+name: CI — Build Check
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-check:
+    name: Validate Portfolio Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check index.html exists
+        run: |
+          if [ ! -f "index.html" ]; then
+            echo "❌ index.html not found!"
+            exit 1
+          else
+            echo "✅ index.html found"
+          fi
+
+      - name: Check styles.css exists
+        run: |
+          if [ ! -f "styles.css" ]; then
+            echo "❌ styles.css not found!"
+            exit 1
+          else
+            echo "✅ styles.css found"
+          fi
+
+      - name: Check script.js exists
+        run: |
+          if [ ! -f "script.js" ]; then
+            echo "❌ script.js not found!"
+            exit 1
+          else
+            echo "✅ script.js found"
+          fi
+
+      - name: Check CV file exists
+        run: |
+          if [ ! -f "CV_Ganidu.docx" ]; then
+            echo "⚠️ CV_Ganidu.docx not found — make sure to add it"
+          else
+            echo "✅ CV_Ganidu.docx found"
+          fi
+
+      - name: List all files
+        run: |
+          echo "📁 Files in repository:"
+          ls -lah
+
+      - name: Done
+        run: echo "✅ CI check passed — all required files present"
