@@ -5,6 +5,13 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
+    /* — SANITIZE INPUT HELPER — */
+    function sanitizeInput(str) {
+        const div = document.createElement('div');
+        div.appendChild(document.createTextNode(str));
+        return div.innerHTML;
+    }
+
     /* — CUSTOM CURSOR — */
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorRing = document.querySelector('.cursor-ring');

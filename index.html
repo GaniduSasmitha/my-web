@@ -2,6 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" 
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://docs.google.com https://www.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://docs.google.com;">
+
+    <!-- Prevent Clickjacking -->
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+
+    <!-- Prevent MIME sniffing -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+
+    <!-- Referrer Policy -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <!-- Permissions Policy -->
+    <meta http-equiv="Permissions-Policy" 
+      content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()">
+
+    <!-- Force HTTPS -->
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+    <!-- Strict Transport Security -->
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+
+    <!-- Robots Meta Tag -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+
+    <!-- Cache Control Meta -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:url" content="https://ganidusasmitha.42web.io/">
     <title>Ganidu Sasmitha | Portfolio</title>
@@ -667,6 +699,7 @@
                 <div style="margin-top: 1.5rem; display: flex; gap: 1rem; align-items: center; position: relative; z-index: 1;">
                     <a href="project reports/AWS Cloud Migration.pdf" 
                        download="AWS_Cloud_Migration_NexaCart.pdf"
+                       rel="noopener noreferrer"
                        class="project-link">
                       ⬇ Download Report
                     </a>
@@ -688,7 +721,7 @@
                     <span class="project-tag">Security</span>
                 </div>
                 <div style="margin-top: 1.5rem; display: flex; gap: 1rem; align-items: center; position: relative; z-index: 1;">
-                    <a href="project reports/Cloud Solution.pdf" download class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem; border-color: var(--accent); color: var(--accent);">&darr; Download</a>
+                    <a href="project reports/Cloud Solution.pdf" download rel="noopener noreferrer" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem; border-color: var(--accent); color: var(--accent);">&darr; Download</a>
                 </div>
             </div>
 
@@ -706,7 +739,7 @@
                     <span class="project-tag">Reconnaissance</span>
                 </div>
                 <div style="margin-top: 1.5rem; display: flex; gap: 1rem; align-items: center; position: relative; z-index: 1;">
-                    <a href="project reports/Cyber Security.pdf" download class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem; border-color: var(--accent); color: var(--accent);">&darr; Download</a>
+                    <a href="project reports/Cyber Security.pdf" download rel="noopener noreferrer" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem; border-color: var(--accent); color: var(--accent);">&darr; Download</a>
                 </div>
             </div>
 
@@ -724,7 +757,7 @@
                     <span class="project-tag">UI/UX</span>
                 </div>
                 <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; position: relative; z-index: 1;">
-                    <a href="project reports/web part 1.pdf" download class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem; border-color: var(--accent); color: var(--accent);">&darr; Download</a>
+                    <a href="project reports/web part 1.pdf" download rel="noopener noreferrer" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem; border-color: var(--accent); color: var(--accent);">&darr; Download</a>
                     <a href="https://ganidusasmitha.github.io/gaming4world/index.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent3); font-size: 0.9rem; text-decoration: none; font-weight: bold;">&#128279; Live Site</a>
                 </div>
             </div>
@@ -744,7 +777,7 @@
                     <span class="project-tag">Responsive</span>
                 </div>
                 <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; position: relative; z-index: 1;">
-                    <a href="project reports/web part 2.pdf" download class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem; border-color: var(--accent); color: var(--accent);">&darr; Download</a>
+                    <a href="project reports/web part 2.pdf" download rel="noopener noreferrer" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem; border-color: var(--accent); color: var(--accent);">&darr; Download</a>
                     <a href="https://ganidusasmitha.github.io/gamig4world/consoles.html" target="_blank" rel="noopener noreferrer" style="color: #ffcc00; font-size: 0.9rem; text-decoration: none; font-weight: bold;">&#128279; Live Site</a>
                 </div>
             </div>
@@ -762,7 +795,7 @@
                     <span class="project-tag">Data Modeling</span>
                 </div>
                 <div style="margin-top: 1.5rem; display: flex; gap: 1rem; align-items: center; position: relative; z-index: 1;">
-                    <a href="project reports/Data Base.zip" download class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem; border-color: var(--accent); color: var(--accent);">&darr; Download</a>
+                    <a href="project reports/Data Base.zip" download rel="noopener noreferrer" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem; border-color: var(--accent); color: var(--accent);">&darr; Download</a>
                 </div>
             </div>
 
@@ -779,7 +812,7 @@
                     <span class="project-tag">Infrastructure</span>
                 </div>
                 <div style="margin-top: 1.5rem; display: flex; gap: 1rem; align-items: center; position: relative; z-index: 1;">
-                    <a href="project reports/Networkig.zip" download class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem; border-color: var(--accent); color: var(--accent);">&darr; Download</a>
+                    <a href="project reports/Networkig.zip" download rel="noopener noreferrer" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.8rem; border-color: var(--accent); color: var(--accent);">&darr; Download</a>
                 </div>
             </div>
         </div>
@@ -793,7 +826,7 @@
             <p>Review my complete academic background, technical skills repository, and documented competition history in my formal Curriculum Vitae.</p>
             <div class="cv-actions">
                 <a href="#" id="btn-preview-cv" class="btn btn-primary">Preview CV</a>
-                <a href="Ganidu Udage CV.pdf" download="Ganidu Udage CV.pdf" class="btn btn-primary">Download Official CV</a>
+                <a href="Ganidu Udage CV.pdf" download="Ganidu Udage CV.pdf" rel="noopener noreferrer" class="btn btn-primary">Download Official CV</a>
             </div>
         </div>
     </section>
@@ -1125,7 +1158,7 @@
                 </div>
                 
                 <div class="modal-footer">
-                    <a href="Ganidu Udage CV.pdf" download="Ganidu Udage CV.pdf" class="btn btn-primary">Download Official CV</a>
+                    <a href="Ganidu Udage CV.pdf" download="Ganidu Udage CV.pdf" rel="noopener noreferrer" class="btn btn-primary">Download Official CV</a>
                     <button class="btn btn-outline close-modal-btn">Close</button>
                 </div>
             </div>
@@ -1133,6 +1166,6 @@
     </div>
 
     <!-- JavaScript Logic -->
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
