@@ -133,10 +133,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (projectCarousel && projectPrev && projectNext) {
         projectNext.addEventListener('click', () => {
-            projectCarousel.scrollBy({ left: 350, behavior: 'smooth' });
+            projectCarousel.scrollBy({ left: 300, behavior: 'smooth' });
         });
         projectPrev.addEventListener('click', () => {
-            projectCarousel.scrollBy({ left: -350, behavior: 'smooth' });
+            projectCarousel.scrollBy({ left: -300, behavior: 'smooth' });
         });
     }
 
