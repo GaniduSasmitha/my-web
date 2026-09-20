@@ -3,7 +3,7 @@
    script.js
    ================================================ */
 
-document.addEventListener('DOMContentLoaded', function() {
+function initPortfolio() {
 
     /* — SANITIZE INPUT HELPER — */
     function sanitizeInput(str) {
@@ -20,33 +20,35 @@ document.addEventListener('DOMContentLoaded', function() {
     let ringX = mouseX;
     let ringY = mouseY;
 
-    window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
-    });
+    if (cursorDot && cursorRing) {
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+        });
 
-    const renderCursor = () => {
-        ringX += (mouseX - ringX) * 0.15;
-        ringY += (mouseY - ringY) * 0.15;
-        cursorRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+        const renderCursor = () => {
+            ringX += (mouseX - ringX) * 0.15;
+            ringY += (mouseY - ringY) * 0.15;
+            cursorRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+            requestAnimationFrame(renderCursor);
+        };
         requestAnimationFrame(renderCursor);
-    };
-    requestAnimationFrame(renderCursor);
 
-    const interactables = document.querySelectorAll('a, button, input, textarea, .skill-card, .cert-card, .ach-card, .project-card, .role-card, .social-icon, .btn');
-    interactables.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursorRing.style.width = '55px';
-            cursorRing.style.height = '55px';
-            cursorRing.style.backgroundColor = 'rgba(0, 229, 255, 0.1)';
+        const interactables = document.querySelectorAll('a, button, input, textarea, .skill-card, .cert-card, .ach-card, .project-card, .role-card, .social-icon, .btn, .cert-nav-btn');
+        interactables.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorRing.style.width = '55px';
+                cursorRing.style.height = '55px';
+                cursorRing.style.backgroundColor = 'rgba(0, 229, 255, 0.1)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorRing.style.width = '32px';
+                cursorRing.style.height = '32px';
+                cursorRing.style.backgroundColor = 'transparent';
+            });
         });
-        el.addEventListener('mouseleave', () => {
-            cursorRing.style.width = '32px';
-            cursorRing.style.height = '32px';
-            cursorRing.style.backgroundColor = 'transparent';
-        });
-    });
+    }
 
     /* — SCROLL REVEAL — */
     const observerOptions = {
@@ -70,9 +72,9 @@ document.addEventListener('DOMContentLoaded', function() {
     /* — MOBILE NAV HAMBURGER — */
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const navLinks = document.getElementById('nav-links');
-    const navAnchors = navLinks.querySelectorAll('a');
 
-    if (mobileMenuBtn) {
+    if (mobileMenuBtn && navLinks) {
+        const navAnchors = navLinks.querySelectorAll('a');
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             if(navLinks.classList.contains('active')) {
@@ -90,11 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /* — FILE UPLOAD — */
-    // No explicit file upload JS was found in index.html
-
-    // Form removed, CTA card used instead.
-
     /* — ANIMATION DELAYS — */
     const setStaggerDelays = (containerSelector, itemSelector, delayMultiplier) => {
         const containers = document.querySelectorAll(containerSelector);
@@ -108,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setStaggerDelays('.skills-grid', '.skill-card', 0.15);
     setStaggerDelays('.achievements-grid', '.ach-card', 0.2);
-    setStaggerDelays('.projects-carousel', '.project-card', 0.2);
+    setStaggerDelays('.cert-carousel', '.cert-card', 0.2);
     setStaggerDelays('.timeline', '.timeline-item', 0.25);
     setStaggerDelays('.roles-grid', '.role-card', 0.15);
 
@@ -166,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    const closeModal = () => modal.classList.remove('active');
+    const closeModal = () => modal && modal.classList.remove('active');
 
     if (btnCloseModal) {
         btnCloseModal.addEventListener('click', closeModal);
@@ -189,5 +186,10 @@ document.addEventListener('DOMContentLoaded', function() {
             closeModal();
         }
     });
+}
 
-});
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPortfolio);
+} else {
+    initPortfolio();
+}
