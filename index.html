@@ -19,6 +19,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script>
+    function scrollCarousel(carouselId, direction) {
+        var carousel = document.getElementById(carouselId);
+        if (!carousel) return;
+        var card = carousel.querySelector('.project-card, .cert-card');
+        var step = (card ? card.offsetWidth : 300) + 24;
+        var target = carousel.scrollLeft + (direction * step);
+        if (typeof carousel.scrollTo === 'function') {
+            carousel.scrollTo({ left: target, behavior: 'smooth' });
+        } else {
+            carousel.scrollLeft = target;
+        }
+    }
+    </script>
 </head>
 <body>
 

@@ -1,7 +1,17 @@
-/* ================================================
-   Ganidu Sasmitha — Portfolio Scripts
-   script.js
-   ================================================ */
+/* — CAROUSEL SCROLL FUNCTION (TOP-LEVEL) — */
+window.scrollCarousel = function(carouselId, direction) {
+    const carousel = document.getElementById(carouselId);
+    if (!carousel) return;
+    const card = carousel.querySelector('.project-card, .cert-card');
+    const step = (card ? card.offsetWidth : 300) + 24;
+    const target = carousel.scrollLeft + (direction * step);
+    
+    if (typeof carousel.scrollTo === 'function') {
+        carousel.scrollTo({ left: target, behavior: 'smooth' });
+    } else {
+        carousel.scrollLeft = target;
+    }
+};
 
 function initPortfolio() {
 
