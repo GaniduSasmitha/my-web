@@ -378,10 +378,11 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
 #projects { background-color: var(--surface); }
 
 .project-card {
-    flex: 0 0 320px;
-    width: 320px;
-    min-width: 320px;
-    max-width: 320px;
+    flex: 0 0 300px !important;
+    width: 300px !important;
+    min-width: 300px !important;
+    max-width: 300px !important;
+    box-sizing: border-box !important;
     scroll-snap-align: start;
     flex-shrink: 0 !important;
     background: var(--bg);
@@ -932,8 +933,8 @@ footer { background: var(--surface); padding: 3rem 10%; border-top: 1px solid rg
     .t-inst { font-size: 0.7rem; }
 
     /* PROJECTS SECTION MOBILE FIX */
-    .cert-card { flex: 0 0 240px; width: 240px; min-width: 240px; max-width: 240px; }
-    .project-card { flex: 0 0 260px; width: 260px; min-width: 260px; max-width: 260px; padding: 1.3rem 1.1rem; }
+    .cert-card { flex: 0 0 240px !important; width: 240px !important; min-width: 240px !important; max-width: 240px !important; }
+    .project-card { flex: 0 0 260px !important; width: 260px !important; min-width: 260px !important; max-width: 260px !important; padding: 1.3rem 1.1rem; }
     .project-card::after { font-size: 3rem; top: -5px; }
     .project-desc { font-size: 0.72rem; }
     .project-tags { flex-wrap: wrap; gap: 0.4rem; }
