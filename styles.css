@@ -165,6 +165,8 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
 /* — CERTIFICATES — */
 #certificates { background-color: var(--surface); }
 
+.scroll-hint-mobile { display: none; }
+
 .cert-carousel-wrapper {
     position: relative;
     display: flex;
@@ -371,8 +373,90 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
 
 /* — PROJECTS — */
 #projects { background-color: var(--surface); }
-.projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 4rem; }
-.project-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 2.5rem; border-radius: 8px; position: relative; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s; }
+
+.projects-carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 4rem;
+}
+
+.project-nav-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--accent);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: none;
+    transition: background 0.3s, color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+@media (hover: none) and (pointer: coarse) {
+    .project-nav-btn { cursor: pointer; }
+}
+.project-nav-btn:hover, .project-nav-btn:focus {
+    background: var(--accent);
+    color: var(--bg);
+}
+
+.projects-carousel-inner {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+}
+
+.projects-carousel-inner::before, .projects-carousel-inner::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 60px;
+    pointer-events: none;
+    z-index: 2;
+}
+.projects-carousel-inner::before {
+    left: 0;
+    background: linear-gradient(to right, var(--surface), transparent);
+}
+.projects-carousel-inner::after {
+    right: 0;
+    background: linear-gradient(to left, var(--surface), transparent);
+}
+
+.projects-carousel {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 1.5rem;
+    padding: 1.5rem 0.5rem 2rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) var(--surface2);
+}
+
+.project-card {
+    min-width: 360px;
+    max-width: 360px;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2.5rem;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s;
+}
 .project-card:hover, .project-card:focus-within { transform: translateY(-5px); border-color: rgba(0, 229, 255, 0.3); }
 .project-card-header { margin-bottom: 1.5rem; position: relative; z-index: 1; }
 .project-type { color: var(--accent3); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; display: block; }
@@ -801,7 +885,7 @@ footer { background: var(--surface); padding: 3rem 10%; border-top: 1px solid rg
 
 /* — RESPONSIVE — */
 @media (max-width: 1024px) {
-    .skills-grid, .projects-grid, .roles-grid { grid-template-columns: repeat(2, 1fr); }
+    .skills-grid, .roles-grid { grid-template-columns: repeat(2, 1fr); }
     .hero-name-1 { font-size: 4rem; }
     .hero-name-2 { font-size: 4.5rem; }
 }
@@ -906,8 +990,10 @@ footer { background: var(--surface); padding: 3rem 10%; border-top: 1px solid rg
     .t-inst { font-size: 0.7rem; }
 
     /* PROJECTS SECTION MOBILE FIX */
-    .projects-grid { grid-template-columns: 1fr; }
-    .project-card { padding: 1.2rem; }
+    .project-nav-btn { display: none; }
+    .projects-carousel { scrollbar-width: none; -ms-overflow-style: none; }
+    .projects-carousel::-webkit-scrollbar { display: none !important; }
+    .project-card { min-width: 280px; max-width: 280px; padding: 1.5rem 1.2rem; }
     .project-card::after { font-size: 3rem; top: -5px; }
     .project-desc { font-size: 0.72rem; }
     .project-tags { flex-wrap: wrap; gap: 0.4rem; }

@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setStaggerDelays('.skills-grid', '.skill-card', 0.15);
     setStaggerDelays('.achievements-grid', '.ach-card', 0.2);
-    setStaggerDelays('.projects-grid', '.project-card', 0.2);
+    setStaggerDelays('.projects-carousel', '.project-card', 0.2);
     setStaggerDelays('.timeline', '.timeline-item', 0.25);
     setStaggerDelays('.roles-grid', '.role-card', 0.15);
 
@@ -123,6 +123,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         certPrev.addEventListener('click', () => {
             certCarousel.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+    }
+
+    /* — PROJECTS CAROUSEL — */
+    const projectCarousel = document.getElementById('projects-carousel');
+    const projectPrev = document.getElementById('projectPrev');
+    const projectNext = document.getElementById('projectNext');
+
+    if (projectCarousel && projectPrev && projectNext) {
+        projectNext.addEventListener('click', () => {
+            projectCarousel.scrollBy({ left: 350, behavior: 'smooth' });
+        });
+        projectPrev.addEventListener('click', () => {
+            projectCarousel.scrollBy({ left: -350, behavior: 'smooth' });
         });
     }
 
