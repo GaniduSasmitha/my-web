@@ -118,11 +118,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const certNext = document.getElementById('certNext');
 
     if (certCarousel && certPrev && certNext) {
-        certNext.addEventListener('click', () => {
-            certCarousel.scrollBy({ left: 300, behavior: 'smooth' });
+        const doCertScroll = (dir) => {
+            const card = certCarousel.querySelector('.cert-card');
+            const step = (card ? card.offsetWidth : 280) + 20;
+            certCarousel.scrollBy({ left: dir * step, behavior: 'smooth' });
+        };
+        certNext.addEventListener('click', (e) => {
+            e.preventDefault();
+            doCertScroll(1);
         });
-        certPrev.addEventListener('click', () => {
-            certCarousel.scrollBy({ left: -300, behavior: 'smooth' });
+        certPrev.addEventListener('click', (e) => {
+            e.preventDefault();
+            doCertScroll(-1);
         });
     }
 
@@ -132,11 +139,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const projectNext = document.getElementById('projectNext');
 
     if (projectCarousel && projectPrev && projectNext) {
-        projectNext.addEventListener('click', () => {
-            projectCarousel.scrollBy({ left: 300, behavior: 'smooth' });
+        const doProjectScroll = (dir) => {
+            const card = projectCarousel.querySelector('.project-card') || projectCarousel.querySelector('.cert-card');
+            const step = (card ? card.offsetWidth : 300) + 24;
+            projectCarousel.scrollBy({ left: dir * step, behavior: 'smooth' });
+        };
+        projectNext.addEventListener('click', (e) => {
+            e.preventDefault();
+            doProjectScroll(1);
         });
-        projectPrev.addEventListener('click', () => {
-            projectCarousel.scrollBy({ left: -300, behavior: 'smooth' });
+        projectPrev.addEventListener('click', (e) => {
+            e.preventDefault();
+            doProjectScroll(-1);
         });
     }
 

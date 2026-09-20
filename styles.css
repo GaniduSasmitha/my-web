@@ -176,6 +176,10 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
 }
 
 .cert-nav-btn {
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+    user-select: none;
     background: var(--surface2);
     border: 1px solid var(--border);
     color: var(--accent);
@@ -228,7 +232,7 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
     overflow-x: auto;
     gap: 1.2rem;
     padding: 1.5rem 0.5rem 2rem;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
     scrollbar-color: var(--accent) var(--surface2);
