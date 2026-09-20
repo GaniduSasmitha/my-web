@@ -293,7 +293,7 @@
         <h2 class="section-title reveal">Certificates</h2>
         
         <div class="cert-carousel-wrapper reveal">
-            <button id="certPrev" class="cert-nav-btn">&larr;</button>
+            <button id="certPrev" class="cert-nav-btn" onclick="scrollCarousel('cert-carousel', -1)">&larr;</button>
             <div class="cert-carousel-inner">
                 <div class="cert-carousel" id="cert-carousel">
                     <!-- Cert 1 -->
@@ -541,7 +541,7 @@
                     </div>
                 </div>
             </div>
-            <button id="certNext" class="cert-nav-btn">&rarr;</button>
+            <button id="certNext" class="cert-nav-btn" onclick="scrollCarousel('cert-carousel', 1)">&rarr;</button>
         </div>
         <div class="scroll-hint-mobile">&larr; swipe to see more &rarr;</div>
         
@@ -624,7 +624,7 @@
         <h2 class="section-title reveal">Projects</h2>
         
         <div class="cert-carousel-wrapper reveal">
-            <button id="projectPrev" class="cert-nav-btn" aria-label="Previous projects">&larr;</button>
+            <button id="projectPrev" class="cert-nav-btn" onclick="scrollCarousel('projects-carousel', -1)" aria-label="Previous projects">&larr;</button>
             <div class="cert-carousel-inner">
                 <div class="cert-carousel" id="projects-carousel">
                     <div class="project-card cert-card" style="border-top: 3px solid var(--accent);" data-num="01">
@@ -800,7 +800,7 @@
                     </div>
                 </div>
             </div>
-            <button id="projectNext" class="cert-nav-btn" aria-label="Next projects">&rarr;</button>
+            <button id="projectNext" class="cert-nav-btn" onclick="scrollCarousel('projects-carousel', 1)" aria-label="Next projects">&rarr;</button>
         </div>
         <div class="scroll-hint-mobile">&larr; swipe to see more &rarr;</div>
 

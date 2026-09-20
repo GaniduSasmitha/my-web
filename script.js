@@ -109,24 +109,34 @@ function initPortfolio() {
     setStaggerDelays('.timeline', '.timeline-item', 0.25);
     setStaggerDelays('.roles-grid', '.role-card', 0.15);
 
+    /* — CAROUSEL SCROLL FUNCTION — */
+    window.scrollCarousel = function(carouselId, direction) {
+        const carousel = document.getElementById(carouselId);
+        if (!carousel) return;
+        const card = carousel.querySelector('.project-card') || carousel.querySelector('.cert-card');
+        const step = (card ? card.offsetWidth : 300) + 24;
+        const target = carousel.scrollLeft + (direction * step);
+        
+        try {
+            carousel.scrollTo({ left: target, behavior: 'smooth' });
+        } catch (err) {
+            carousel.scrollLeft = target;
+        }
+    };
+
     /* — CERTIFICATES CAROUSEL — */
     const certCarousel = document.getElementById('cert-carousel');
     const certPrev = document.getElementById('certPrev');
     const certNext = document.getElementById('certNext');
 
     if (certCarousel && certPrev && certNext) {
-        const doCertScroll = (dir) => {
-            const card = certCarousel.querySelector('.cert-card');
-            const step = (card ? card.offsetWidth : 280) + 20;
-            certCarousel.scrollBy({ left: dir * step, behavior: 'smooth' });
-        };
         certNext.addEventListener('click', (e) => {
             e.preventDefault();
-            doCertScroll(1);
+            window.scrollCarousel('cert-carousel', 1);
         });
         certPrev.addEventListener('click', (e) => {
             e.preventDefault();
-            doCertScroll(-1);
+            window.scrollCarousel('cert-carousel', -1);
         });
     }
 
@@ -136,18 +146,13 @@ function initPortfolio() {
     const projectNext = document.getElementById('projectNext');
 
     if (projectCarousel && projectPrev && projectNext) {
-        const doProjectScroll = (dir) => {
-            const card = projectCarousel.querySelector('.project-card') || projectCarousel.querySelector('.cert-card');
-            const step = (card ? card.offsetWidth : 300) + 24;
-            projectCarousel.scrollBy({ left: dir * step, behavior: 'smooth' });
-        };
         projectNext.addEventListener('click', (e) => {
             e.preventDefault();
-            doProjectScroll(1);
+            window.scrollCarousel('projects-carousel', 1);
         });
         projectPrev.addEventListener('click', (e) => {
             e.preventDefault();
-            doProjectScroll(-1);
+            window.scrollCarousel('projects-carousel', -1);
         });
     }
 
