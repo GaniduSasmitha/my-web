@@ -384,7 +384,7 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
 .carousel-scene {
   position: relative;
   width: 100%;
-  height: 560px;
+  height: 580px;
   perspective: 1200px;
   display: flex;
   align-items: center;
@@ -402,7 +402,7 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
 
 .carousel-item {
   position: absolute;
-  width: 360px;
+  width: 370px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -411,27 +411,31 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
   border-radius: 8px;
   transform-style: preserve-3d;
   user-select: none;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Center active card */
+/* Center active card — translateZ(0) for razor-sharp crystal clear text rendering */
 .carousel-item.active {
   transform: translate(-50%, -50%) 
-    translateZ(120px) 
+    translateZ(0) 
     rotateY(0deg)
     scale(1);
   opacity: 1;
   z-index: 10;
-  filter: brightness(1);
+  filter: none;
 }
 
 /* Card immediately left of center */
 .carousel-item.prev {
   transform: translate(-50%, -50%) 
-    translateX(-300px) 
-    translateZ(-80px) 
-    rotateY(45deg)
+    translateX(-310px) 
+    translateZ(-100px) 
+    rotateY(35deg)
     scale(0.85);
-  opacity: 0.6;
+  opacity: 0.55;
   z-index: 5;
   filter: brightness(0.5);
 }
@@ -439,11 +443,11 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
 /* Card immediately right of center */
 .carousel-item.next {
   transform: translate(-50%, -50%) 
-    translateX(300px) 
-    translateZ(-80px) 
-    rotateY(-45deg)
+    translateX(310px) 
+    translateZ(-100px) 
+    rotateY(-35deg)
     scale(0.85);
-  opacity: 0.6;
+  opacity: 0.55;
   z-index: 5;
   filter: brightness(0.5);
 }
@@ -451,9 +455,9 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
 /* Cards far left */
 .carousel-item.far-prev {
   transform: translate(-50%, -50%) 
-    translateX(-500px) 
+    translateX(-520px) 
     translateZ(-200px) 
-    rotateY(60deg)
+    rotateY(50deg)
     scale(0.7);
   opacity: 0.2;
   z-index: 1;
@@ -463,9 +467,9 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
 /* Cards far right */
 .carousel-item.far-next {
   transform: translate(-50%, -50%) 
-    translateX(500px) 
+    translateX(520px) 
     translateZ(-200px) 
-    rotateY(-60deg)
+    rotateY(-50deg)
     scale(0.7);
   opacity: 0.2;
   z-index: 1;
@@ -483,8 +487,8 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
 .carousel-item.active .project-card {
   border-color: rgba(0, 229, 255, 0.4);
   box-shadow: 
-    0 0 60px rgba(0, 229, 255, 0.15),
-    0 30px 80px rgba(0, 0, 0, 0.5);
+    0 0 50px rgba(0, 229, 255, 0.15),
+    0 25px 60px rgba(0, 0, 0, 0.5);
 }
 
 /* Navigation arrows */
@@ -554,8 +558,8 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
 
 /* Project card inside carousel adjustments — NO INTERNAL SCROLLBAR */
 .carousel-item .project-card {
-  width: 360px;
-  height: 490px;
+  width: 370px;
+  height: 520px;
   overflow: hidden;
   margin: 0;
 }
@@ -565,40 +569,75 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 1.4rem 1.6rem;
+    padding: 1.5rem 1.6rem;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 .project-card-header { margin-bottom: 0.8rem; position: relative; z-index: 1; }
 .project-type { color: var(--accent3); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem; display: block; }
-.project-title { font-size: 1.18rem; color: #fff; line-height: 1.25; }
+.project-title { font-size: 1.15rem; color: #fff; line-height: 1.3; }
 .project-card::after { content: attr(data-num); position: absolute; top: -10px; right: 0; font-family: 'Syne', sans-serif; font-size: 6.5rem; font-weight: 800; color: rgba(255, 255, 255, 0.03); z-index: 0; line-height: 1; pointer-events: none; }
-.project-desc { color: var(--text-muted); font-size: 0.8rem; line-height: 1.45; margin-bottom: 0.8rem; position: relative; z-index: 1; flex-grow: 1; }
+.project-desc { color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; margin-bottom: 0.8rem; position: relative; z-index: 1; flex-grow: 1; }
 .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; position: relative; z-index: 1; margin-bottom: 0.8rem; }
 .project-tag { font-size: 0.7rem; color: var(--text-muted); padding: 3px 8px; background: rgba(255, 255, 255, 0.05); border-radius: 4px; }
 
-.project-link {
-    display: inline-flex;
+.project-card-actions {
+    margin-top: auto;
+    padding-top: 0.8rem;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 0.4rem;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    color: var(--accent);
-    text-transform: uppercase;
-    text-decoration: none;
-    background: transparent;
-    border: 1px solid var(--accent);
-    padding: 0.6rem 1.2rem;
-    border-radius: 2px;
-    transition: all 0.2s;
 }
 
-.project-link:hover {
-    background: rgba(0, 229, 255, 0.08);
+.project-btn {
+    padding: 8px 16px !important;
+    font-size: 0.8rem !important;
+    border-color: var(--accent) !important;
+    color: var(--accent) !important;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    font-family: 'Space Mono', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
+    min-height: 38px;
+    cursor: pointer;
+}
+
+.project-btn:hover, .project-btn:focus {
+    background: rgba(0, 229, 255, 0.12) !important;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.project-live-link {
+    color: var(--accent3);
+    font-size: 0.85rem;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: opacity 0.2s;
+}
+
+.project-live-link:hover {
+    opacity: 0.8;
 }
 
 /* — CV DOWNLOAD — */
@@ -1106,23 +1145,23 @@ footer { background: var(--surface); padding: 3rem 10%; border-top: 1px solid rg
 
     /* PROJECTS SECTION MOBILE FIX */
     .carousel-scene {
-      height: 520px;
+      height: 560px;
     }
 
     .carousel-item {
-      width: 310px;
+      width: 320px;
     }
 
     .carousel-item .project-card {
-      width: 310px;
-      height: 460px;
+      width: 320px;
+      height: 500px;
     }
 
     .carousel-item.prev {
       transform: translate(-50%, -50%) 
         translateX(-210px) 
         translateZ(-60px) 
-        rotateY(45deg)
+        rotateY(40deg)
         scale(0.85);
     }
 
@@ -1130,7 +1169,7 @@ footer { background: var(--surface); padding: 3rem 10%; border-top: 1px solid rg
       transform: translate(-50%, -50%) 
         translateX(210px) 
         translateZ(-60px) 
-        rotateY(-45deg)
+        rotateY(-40deg)
         scale(0.85);
     }
 
@@ -1140,14 +1179,35 @@ footer { background: var(--surface); padding: 3rem 10%; border-top: 1px solid rg
       pointer-events: none;
     }
 
-    .project-card { padding: 1.2rem 1.2rem; }
-    .project-card::after { font-size: 4rem; top: -5px; }
-    .project-desc { font-size: 0.78rem; line-height: 1.4; margin-bottom: 0.8rem; }
-    .project-tags { flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.8rem; }
-    .project-tag { padding: 3px 7px; font-size: 0.68rem; }
-    .project-card > div:last-child { flex-direction: column; width: 100%; gap: 0; }
-    .project-card .btn, .project-card .project-link { width: 100%; padding: 0.85rem; font-size: clamp(0.75rem, 3.5vw, 1rem) !important; justify-content: center; }
-    .project-card > div:last-child > a[target="_blank"] { width: 100%; display: block; text-align: center; padding: 10px 0; margin-top: 0.5rem; }
+    .project-card { padding: 1.3rem 1.3rem; }
+    .project-card::after { font-size: 4.5rem; top: -5px; }
+    .project-title { font-size: 1.05rem; line-height: 1.25; }
+    .project-desc { font-size: 0.78rem; line-height: 1.45; margin-bottom: 0.6rem; }
+    .project-tags { flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.6rem; }
+    .project-tag { padding: 3px 7px; font-size: 0.65rem; }
+    .project-card-actions {
+        margin-top: auto;
+        padding-top: 0.6rem;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        align-items: center;
+    }
+    .project-card-actions .project-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 10px 16px !important;
+        font-size: 0.78rem !important;
+        min-height: 40px;
+    }
+    .project-card-actions .project-live-link {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        padding: 4px 0;
+    }
 
     /* CV SECTION MOBILE FIX */
     .cv-box { padding: 1.5rem 1.2rem; flex-direction: column; display: flex; }
@@ -1191,17 +1251,18 @@ footer { background: var(--surface); padding: 3rem 10%; border-top: 1px solid rg
 
 @media (max-width: 480px) {
   .carousel-scene {
-    height: 500px;
+    height: 540px;
     perspective: 800px;
   }
 
   .carousel-item {
-    width: 290px;
+    width: 295px;
   }
 
   .carousel-item .project-card {
-    width: 290px;
-    height: 440px;
+    width: 295px;
+    height: 490px;
+    padding: 1.1rem 1.1rem;
   }
 
   .carousel-item.prev {
