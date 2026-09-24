@@ -45,7 +45,7 @@ function initPortfolio() {
         };
         requestAnimationFrame(renderCursor);
 
-        const interactables = document.querySelectorAll('a, button, input, textarea, .skill-card, .cert-card, .ach-card, .project-card, .role-card, .social-icon, .btn, .cert-nav-btn, .carousel-prev, .carousel-next, .carousel-dot, .carousel-item');
+        const interactables = document.querySelectorAll('a, button, input, textarea, .skill-card, .cert-card, .ach-card, .project-card, .role-card, .social-icon, .btn, .cert-nav-btn, .carousel-prev, .carousel-next, .carousel-dot, .carousel-item, .skills-carousel-item, .skills-prev, .skills-next, .skills-dot');
         interactables.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursorRing.style.width = '55px';
