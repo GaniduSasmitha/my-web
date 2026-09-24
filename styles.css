@@ -604,6 +604,10 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
   border-radius: 8px;
   transform-style: flat !important;
   user-select: none;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  z-index: 0;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
@@ -612,49 +616,50 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
 
 /* Center active card — 100% razor-sharp crisp text rendering at native screen DPI */
 .carousel-item.active {
-  transform: translate(-50%, -50%) 
-    scale(1);
+  transform: translate(-50%, -50%) scale(1);
   opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
   z-index: 10;
   filter: none;
 }
 
 /* Card immediately left of center */
 .carousel-item.prev {
-  transform: translate(-50%, -50%) 
-    translateX(-310px) 
-    scale(0.86);
+  transform: translate(-50%, -50%) translateX(-310px) scale(0.86);
   opacity: 0.55;
+  pointer-events: auto;
+  visibility: visible;
   z-index: 5;
   filter: brightness(0.65);
 }
 
 /* Card immediately right of center */
 .carousel-item.next {
-  transform: translate(-50%, -50%) 
-    translateX(310px) 
-    scale(0.86);
+  transform: translate(-50%, -50%) translateX(310px) scale(0.86);
   opacity: 0.55;
+  pointer-events: auto;
+  visibility: visible;
   z-index: 5;
   filter: brightness(0.65);
 }
 
 /* Cards far left */
 .carousel-item.far-prev {
-  transform: translate(-50%, -50%) 
-    translateX(-510px) 
-    scale(0.7);
+  transform: translate(-50%, -50%) translateX(-510px) scale(0.7);
   opacity: 0.15;
+  pointer-events: auto;
+  visibility: visible;
   z-index: 1;
   filter: brightness(0.35);
 }
 
 /* Cards far right */
 .carousel-item.far-next {
-  transform: translate(-50%, -50%) 
-    translateX(510px) 
-    scale(0.7);
+  transform: translate(-50%, -50%) translateX(510px) scale(0.7);
   opacity: 0.15;
+  pointer-events: auto;
+  visibility: visible;
   z-index: 1;
   filter: brightness(0.35);
 }
@@ -663,6 +668,7 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
 .carousel-item.hidden {
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
   z-index: 0;
 }
 
