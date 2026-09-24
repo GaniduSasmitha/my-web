@@ -266,6 +266,143 @@ function initPortfolio() {
       updateCarousel();
     }
 
+    /* — 3D SKILLS CORE CAROUSEL — */
+    const skillsCarousel = document.getElementById('skillsCarousel');
+    const skillsPrev = document.getElementById('skillsPrev');
+    const skillsNext = document.getElementById('skillsNext');
+    const skillsDotsContainer = document.getElementById('skillsDots');
+
+    if (skillsCarousel && skillsDotsContainer) {
+      const skillItems = Array.from(
+        skillsCarousel.querySelectorAll('.skills-carousel-item')
+      );
+      let currentSkillIndex = 0;
+      let autoPlayTimer = null;
+
+      skillsDotsContainer.innerHTML = '';
+
+      // Create dots
+      skillItems.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.classList.add('skills-dot');
+        dot.setAttribute('aria-label', 'Go to skill slide ' + (i + 1));
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSkillSlide(i));
+        skillsDotsContainer.appendChild(dot);
+      });
+
+      function updateSkillsCarousel() {
+        const dots = skillsDotsContainer.querySelectorAll('.skills-dot');
+        const total = skillItems.length;
+        
+        skillItems.forEach((item, i) => {
+          item.classList.remove(
+            'active', 'prev', 'next', 
+            'far-prev', 'far-next', 'hidden'
+          );
+          
+          let diff = i - currentSkillIndex;
+          while (diff > total / 2) diff -= total;
+          while (diff < -total / 2) diff += total;
+          
+          if (diff === 0) {
+            item.classList.add('active');
+          } else if (diff === -1) {
+            item.classList.add('prev');
+          } else if (diff === 1) {
+            item.classList.add('next');
+          } else if (diff === -2) {
+            item.classList.add('far-prev');
+          } else if (diff === 2) {
+            item.classList.add('far-next');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentSkillIndex);
+        });
+      }
+
+      function goToSkillSlide(index) {
+        currentSkillIndex = (index + skillItems.length) % skillItems.length;
+        updateSkillsCarousel();
+        resetAutoPlay();
+      }
+
+      function nextSkillSlide() {
+        goToSkillSlide(currentSkillIndex + 1);
+      }
+
+      function prevSkillSlide() {
+        goToSkillSlide(currentSkillIndex - 1);
+      }
+
+      // Button events
+      if (skillsNext) skillsNext.addEventListener('click', (e) => { e.preventDefault(); nextSkillSlide(); });
+      if (skillsPrev) skillsPrev.addEventListener('click', (e) => { e.preventDefault(); prevSkillSlide(); });
+
+      // Touch/swipe support for mobile
+      let sTouchStartX = 0;
+      let sTouchEndX = 0;
+
+      skillsCarousel.addEventListener('touchstart', (e) => {
+        sTouchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      skillsCarousel.addEventListener('touchend', (e) => {
+        sTouchEndX = e.changedTouches[0].screenX;
+        const diff = sTouchStartX - sTouchEndX;
+        if (Math.abs(diff) > 40) {
+          if (diff > 0) {
+            nextSkillSlide();
+          } else {
+            prevSkillSlide();
+          }
+        }
+      }, { passive: true });
+
+      // Click side cards to focus
+      skillItems.forEach((item, i) => {
+        item.addEventListener('click', (e) => {
+          if (!item.classList.contains('active')) {
+            e.preventDefault();
+            goToSkillSlide(i);
+          }
+        });
+      });
+
+      // Auto play
+      function startAutoPlay() {
+        if (!autoPlayTimer) {
+          autoPlayTimer = setInterval(() => {
+            currentSkillIndex = (currentSkillIndex + 1) % skillItems.length;
+            updateSkillsCarousel();
+          }, 4500);
+        }
+      }
+
+      function stopAutoPlay() {
+        if (autoPlayTimer) {
+          clearInterval(autoPlayTimer);
+          autoPlayTimer = null;
+        }
+      }
+
+      function resetAutoPlay() {
+        stopAutoPlay();
+        startAutoPlay();
+      }
+
+      skillsCarousel.addEventListener('mouseenter', stopAutoPlay);
+      skillsCarousel.addEventListener('mouseleave', startAutoPlay);
+
+      // Initialize
+      updateSkillsCarousel();
+      startAutoPlay();
+    }
+
     /* — CV MODAL — */
     const modal = document.getElementById('cv-modal');
     const btnOpenModal = document.getElementById('btn-preview-cv');
