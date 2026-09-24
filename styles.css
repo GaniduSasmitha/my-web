@@ -378,14 +378,14 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
 .t-title { font-size: 1.8rem; color: #fff; margin-bottom: 0.5rem; }
 .t-inst { color: var(--text-muted); font-size: 1.1rem; }
 
-/* — 3D PROJECT CAROUSEL — */
+/* — PROJECT CAROUSEL — */
 #projects { background-color: var(--surface); }
 
 .carousel-scene {
   position: relative;
   width: 100%;
   height: 620px;
-  perspective: 1000px;
+  perspective: none !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -396,8 +396,8 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
   position: relative;
   width: 100%;
   height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-style: flat !important;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .carousel-item {
@@ -406,10 +406,10 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
   border-radius: 8px;
-  transform-style: preserve-3d;
+  transform-style: flat !important;
   user-select: none;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -417,11 +417,9 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Center active card — translateZ(0) for 100% razor-sharp crisp text rendering */
+/* Center active card — 100% razor-sharp crisp text rendering at native screen DPI */
 .carousel-item.active {
   transform: translate(-50%, -50%) 
-    translateZ(0) 
-    rotateY(0deg)
     scale(1);
   opacity: 1;
   z-index: 10;
@@ -432,48 +430,40 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
 .carousel-item.prev {
   transform: translate(-50%, -50%) 
     translateX(-310px) 
-    translateZ(-80px) 
-    rotateY(25deg)
     scale(0.86);
-  opacity: 0.5;
+  opacity: 0.55;
   z-index: 5;
-  filter: brightness(0.5);
+  filter: brightness(0.65);
 }
 
 /* Card immediately right of center */
 .carousel-item.next {
   transform: translate(-50%, -50%) 
     translateX(310px) 
-    translateZ(-80px) 
-    rotateY(-25deg)
     scale(0.86);
-  opacity: 0.5;
+  opacity: 0.55;
   z-index: 5;
-  filter: brightness(0.5);
+  filter: brightness(0.65);
 }
 
 /* Cards far left */
 .carousel-item.far-prev {
   transform: translate(-50%, -50%) 
-    translateX(-500px) 
-    translateZ(-160px) 
-    rotateY(40deg)
+    translateX(-510px) 
     scale(0.7);
   opacity: 0.15;
   z-index: 1;
-  filter: brightness(0.3);
+  filter: brightness(0.35);
 }
 
 /* Cards far right */
 .carousel-item.far-next {
   transform: translate(-50%, -50%) 
-    translateX(500px) 
-    translateZ(-160px) 
-    rotateY(-40deg)
+    translateX(510px) 
     scale(0.7);
   opacity: 0.15;
   z-index: 1;
-  filter: brightness(0.3);
+  filter: brightness(0.35);
 }
 
 /* Hidden cards */
