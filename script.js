@@ -156,114 +156,115 @@ function initPortfolio() {
     const nextBtn = document.getElementById('carouselNext');
     const dotsContainer = document.getElementById('carouselDots');
 
-    if (carousel && dotsContainer) {
-      const items = Array.from(
-        carousel.querySelectorAll('.carousel-item')
-      );
-      let currentIndex = 0;
+    if (carousel) {
+      try {
+        const items = Array.from(
+          carousel.querySelectorAll('.carousel-item')
+        );
+        let currentIndex = 0;
 
-      dotsContainer.innerHTML = '';
+        if (dotsContainer) {
+          dotsContainer.innerHTML = '';
+          items.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+          });
+        }
 
-      // Create dots
-      items.forEach((_, i) => {
-        const dot = document.createElement('button');
-        dot.classList.add('carousel-dot');
-        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-        if (i === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(i));
-        dotsContainer.appendChild(dot);
-      });
-
-      function updateCarousel() {
-        const dots = dotsContainer.querySelectorAll('.carousel-dot');
-        const total = items.length;
-        
-        items.forEach((item, i) => {
-          item.classList.remove(
-            'active', 'prev', 'next', 
-            'far-prev', 'far-next', 'hidden'
-          );
+        function updateCarousel() {
+          const total = items.length;
           
-          let diff = i - currentIndex;
-          while (diff > total / 2) diff -= total;
-          while (diff < -total / 2) diff += total;
-          
-          if (diff === 0) {
-            item.classList.add('active');
-          } else if (diff === -1) {
-            item.classList.add('prev');
-          } else if (diff === 1) {
-            item.classList.add('next');
-          } else if (diff === -2) {
-            item.classList.add('far-prev');
-          } else if (diff === 2) {
-            item.classList.add('far-next');
-          } else {
-            item.classList.add('hidden');
-          }
-        });
+          items.forEach((item, i) => {
+            item.classList.remove(
+              'active', 'prev', 'next', 
+              'far-prev', 'far-next', 'hidden'
+            );
+            
+            let diff = i - currentIndex;
+            while (diff > total / 2) diff -= total;
+            while (diff < -total / 2) diff += total;
+            
+            if (diff === 0) {
+              item.classList.add('active');
+            } else if (diff === -1) {
+              item.classList.add('prev');
+            } else if (diff === 1) {
+              item.classList.add('next');
+            } else if (diff === -2) {
+              item.classList.add('far-prev');
+            } else if (diff === 2) {
+              item.classList.add('far-next');
+            } else {
+              item.classList.add('hidden');
+            }
+          });
 
-        dots.forEach((dot, i) => {
-          dot.classList.toggle('active', i === currentIndex);
-        });
-      }
-
-      function goToSlide(index) {
-        currentIndex = (index + items.length) % items.length;
-        updateCarousel();
-      }
-
-      function nextSlide() {
-        goToSlide(currentIndex + 1);
-      }
-
-      function prevSlide() {
-        goToSlide(currentIndex - 1);
-      }
-
-      // Button events
-      if (nextBtn) nextBtn.addEventListener('click', (e) => { e.preventDefault(); nextSlide(); });
-      if (prevBtn) prevBtn.addEventListener('click', (e) => { e.preventDefault(); prevSlide(); });
-
-      // Touch/swipe support for mobile
-      let touchStartX = 0;
-      let touchEndX = 0;
-
-      carousel.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-      }, { passive: true });
-
-      carousel.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        const diff = touchStartX - touchEndX;
-        if (Math.abs(diff) > 40) {
-          if (diff > 0) {
-            nextSlide();
-          } else {
-            prevSlide();
+          if (dotsContainer) {
+            const dots = dotsContainer.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, i) => {
+              dot.classList.toggle('active', i === currentIndex);
+            });
           }
         }
-      }, { passive: true });
 
-      // Keyboard navigation
-      document.addEventListener('keydown', (e) => {
-        if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
-        if (e.key === 'ArrowLeft') prevSlide();
-        if (e.key === 'ArrowRight') nextSlide();
-      });
+        function goToSlide(index) {
+          currentIndex = (index + items.length) % items.length;
+          updateCarousel();
+        }
 
-      // Click on side cards to navigate
-      items.forEach((item, i) => {
-        item.addEventListener('click', (e) => {
-          if (!item.classList.contains('active')) {
-            e.preventDefault();
-            goToSlide(i);
+        function nextSlide() {
+          goToSlide(currentIndex + 1);
+        }
+
+        function prevSlide() {
+          goToSlide(currentIndex - 1);
+        }
+
+        if (nextBtn) nextBtn.addEventListener('click', (e) => { e.preventDefault(); nextSlide(); });
+        if (prevBtn) prevBtn.addEventListener('click', (e) => { e.preventDefault(); prevSlide(); });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carousel.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        carousel.addEventListener('touchend', (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          const diff = touchStartX - touchEndX;
+          if (Math.abs(diff) > 40) {
+            if (diff > 0) {
+              nextSlide();
+            } else {
+              prevSlide();
+            }
           }
-        });
-      });
+        }, { passive: true });
 
-      // Initialize
-      updateCarousel();
+        document.addEventListener('keydown', (e) => {
+          if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+          if (e.key === 'ArrowLeft') prevSlide();
+          if (e.key === 'ArrowRight') nextSlide();
+        });
+
+        items.forEach((item, i) => {
+          item.addEventListener('click', (e) => {
+            if (!item.classList.contains('active')) {
+              e.preventDefault();
+              goToSlide(i);
+            }
+          });
+        });
+
+        updateCarousel();
+      } catch (err) {
+        console.error('Project carousel init error:', err);
+      }
     }
 
     /* — 3D SKILLS CORE CAROUSEL — */
@@ -272,135 +273,136 @@ function initPortfolio() {
     const skillsNext = document.getElementById('skillsNext');
     const skillsDotsContainer = document.getElementById('skillsDots');
 
-    if (skillsCarousel && skillsDotsContainer) {
-      const skillItems = Array.from(
-        skillsCarousel.querySelectorAll('.skills-carousel-item')
-      );
-      let currentSkillIndex = 0;
-      let autoPlayTimer = null;
+    if (skillsCarousel) {
+      try {
+        const skillItems = Array.from(
+          skillsCarousel.querySelectorAll('.skills-carousel-item')
+        );
+        let currentSkillIndex = 0;
+        let autoPlayTimer = null;
 
-      skillsDotsContainer.innerHTML = '';
+        if (skillsDotsContainer) {
+          skillsDotsContainer.innerHTML = '';
+          skillItems.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.classList.add('skills-dot');
+            dot.setAttribute('aria-label', 'Go to skill slide ' + (i + 1));
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSkillSlide(i));
+            skillsDotsContainer.appendChild(dot);
+          });
+        }
 
-      // Create dots
-      skillItems.forEach((_, i) => {
-        const dot = document.createElement('button');
-        dot.classList.add('skills-dot');
-        dot.setAttribute('aria-label', 'Go to skill slide ' + (i + 1));
-        if (i === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSkillSlide(i));
-        skillsDotsContainer.appendChild(dot);
-      });
+        function updateSkillsCarousel() {
+          const total = skillItems.length;
+          
+          skillItems.forEach((item, i) => {
+            item.classList.remove(
+              'active', 'prev', 'next', 
+              'far-prev', 'far-next', 'hidden'
+            );
+            
+            let diff = i - currentSkillIndex;
+            while (diff > total / 2) diff -= total;
+            while (diff < -total / 2) diff += total;
+            
+            if (diff === 0) {
+              item.classList.add('active');
+            } else if (diff === -1) {
+              item.classList.add('prev');
+            } else if (diff === 1) {
+              item.classList.add('next');
+            } else if (diff === -2) {
+              item.classList.add('far-prev');
+            } else if (diff === 2) {
+              item.classList.add('far-next');
+            } else {
+              item.classList.add('hidden');
+            }
+          });
 
-      function updateSkillsCarousel() {
-        const dots = skillsDotsContainer.querySelectorAll('.skills-dot');
-        const total = skillItems.length;
-        
+          if (skillsDotsContainer) {
+            const dots = skillsDotsContainer.querySelectorAll('.skills-dot');
+            dots.forEach((dot, i) => {
+              dot.classList.toggle('active', i === currentSkillIndex);
+            });
+          }
+        }
+
+        function goToSkillSlide(index) {
+          currentSkillIndex = (index + skillItems.length) % skillItems.length;
+          updateSkillsCarousel();
+          resetAutoPlay();
+        }
+
+        function nextSkillSlide() {
+          goToSkillSlide(currentSkillIndex + 1);
+        }
+
+        function prevSkillSlide() {
+          goToSkillSlide(currentSkillIndex - 1);
+        }
+
+        if (skillsNext) skillsNext.addEventListener('click', (e) => { e.preventDefault(); nextSkillSlide(); });
+        if (skillsPrev) skillsPrev.addEventListener('click', (e) => { e.preventDefault(); prevSkillSlide(); });
+
+        let sTouchStartX = 0;
+        let sTouchEndX = 0;
+
+        skillsCarousel.addEventListener('touchstart', (e) => {
+          sTouchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        skillsCarousel.addEventListener('touchend', (e) => {
+          sTouchEndX = e.changedTouches[0].screenX;
+          const diff = sTouchStartX - sTouchEndX;
+          if (Math.abs(diff) > 40) {
+            if (diff > 0) {
+              nextSkillSlide();
+            } else {
+              prevSkillSlide();
+            }
+          }
+        }, { passive: true });
+
         skillItems.forEach((item, i) => {
-          item.classList.remove(
-            'active', 'prev', 'next', 
-            'far-prev', 'far-next', 'hidden'
-          );
-          
-          let diff = i - currentSkillIndex;
-          while (diff > total / 2) diff -= total;
-          while (diff < -total / 2) diff += total;
-          
-          if (diff === 0) {
-            item.classList.add('active');
-          } else if (diff === -1) {
-            item.classList.add('prev');
-          } else if (diff === 1) {
-            item.classList.add('next');
-          } else if (diff === -2) {
-            item.classList.add('far-prev');
-          } else if (diff === 2) {
-            item.classList.add('far-next');
-          } else {
-            item.classList.add('hidden');
+          item.addEventListener('click', (e) => {
+            if (!item.classList.contains('active')) {
+              e.preventDefault();
+              goToSkillSlide(i);
+            }
+          });
+        });
+
+        function startAutoPlay() {
+          if (!autoPlayTimer) {
+            autoPlayTimer = setInterval(() => {
+              currentSkillIndex = (currentSkillIndex + 1) % skillItems.length;
+              updateSkillsCarousel();
+            }, 4500);
           }
-        });
+        }
 
-        dots.forEach((dot, i) => {
-          dot.classList.toggle('active', i === currentSkillIndex);
-        });
-      }
+        function stopAutoPlay() {
+          if (autoPlayTimer) {
+            clearInterval(autoPlayTimer);
+            autoPlayTimer = null;
+          }
+        }
 
-      function goToSkillSlide(index) {
-        currentSkillIndex = (index + skillItems.length) % skillItems.length;
+        function resetAutoPlay() {
+          stopAutoPlay();
+          startAutoPlay();
+        }
+
+        skillsCarousel.addEventListener('mouseenter', stopAutoPlay);
+        skillsCarousel.addEventListener('mouseleave', startAutoPlay);
+
         updateSkillsCarousel();
-        resetAutoPlay();
-      }
-
-      function nextSkillSlide() {
-        goToSkillSlide(currentSkillIndex + 1);
-      }
-
-      function prevSkillSlide() {
-        goToSkillSlide(currentSkillIndex - 1);
-      }
-
-      // Button events
-      if (skillsNext) skillsNext.addEventListener('click', (e) => { e.preventDefault(); nextSkillSlide(); });
-      if (skillsPrev) skillsPrev.addEventListener('click', (e) => { e.preventDefault(); prevSkillSlide(); });
-
-      // Touch/swipe support for mobile
-      let sTouchStartX = 0;
-      let sTouchEndX = 0;
-
-      skillsCarousel.addEventListener('touchstart', (e) => {
-        sTouchStartX = e.changedTouches[0].screenX;
-      }, { passive: true });
-
-      skillsCarousel.addEventListener('touchend', (e) => {
-        sTouchEndX = e.changedTouches[0].screenX;
-        const diff = sTouchStartX - sTouchEndX;
-        if (Math.abs(diff) > 40) {
-          if (diff > 0) {
-            nextSkillSlide();
-          } else {
-            prevSkillSlide();
-          }
-        }
-      }, { passive: true });
-
-      // Click side cards to focus
-      skillItems.forEach((item, i) => {
-        item.addEventListener('click', (e) => {
-          if (!item.classList.contains('active')) {
-            e.preventDefault();
-            goToSkillSlide(i);
-          }
-        });
-      });
-
-      // Auto play
-      function startAutoPlay() {
-        if (!autoPlayTimer) {
-          autoPlayTimer = setInterval(() => {
-            currentSkillIndex = (currentSkillIndex + 1) % skillItems.length;
-            updateSkillsCarousel();
-          }, 4500);
-        }
-      }
-
-      function stopAutoPlay() {
-        if (autoPlayTimer) {
-          clearInterval(autoPlayTimer);
-          autoPlayTimer = null;
-        }
-      }
-
-      function resetAutoPlay() {
-        stopAutoPlay();
         startAutoPlay();
+      } catch (err) {
+        console.error('Skills carousel init error:', err);
       }
-
-      skillsCarousel.addEventListener('mouseenter', stopAutoPlay);
-      skillsCarousel.addEventListener('mouseleave', startAutoPlay);
-
-      // Initialize
-      updateSkillsCarousel();
-      startAutoPlay();
     }
 
     /* — CV MODAL — */
