@@ -45,7 +45,7 @@ function initPortfolio() {
         };
         requestAnimationFrame(renderCursor);
 
-        const interactables = document.querySelectorAll('a, button, input, textarea, .skill-card, .cert-card, .ach-card, .project-card, .role-card, .social-icon, .btn, .cert-nav-btn');
+        const interactables = document.querySelectorAll('a, button, input, textarea, .skill-card, .cert-card, .ach-card, .project-card, .role-card, .social-icon, .btn, .cert-nav-btn, .carousel-prev, .carousel-next, .carousel-dot, .carousel-item');
         interactables.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursorRing.style.width = '55px';
@@ -150,20 +150,137 @@ function initPortfolio() {
         });
     }
 
-    /* — PROJECTS CAROUSEL — */
-    const projectCarousel = document.getElementById('projects-carousel');
-    const projectPrev = document.getElementById('projectPrev');
-    const projectNext = document.getElementById('projectNext');
+    /* — 3D PROJECT CAROUSEL — */
+    const carousel = document.getElementById('projectCarousel');
+    const prevBtn = document.getElementById('carouselPrev');
+    const nextBtn = document.getElementById('carouselNext');
+    const dotsContainer = document.getElementById('carouselDots');
 
-    if (projectCarousel && projectPrev && projectNext) {
-        projectNext.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollCarousel('projects-carousel', 1);
+    if (carousel) {
+      const items = Array.from(
+        carousel.querySelectorAll('.carousel-item')
+      );
+      let currentIndex = 0;
+      let autoPlayTimer = null;
+
+      // Create dots
+      items.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.classList.add('carousel-dot');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+      });
+
+      function updateCarousel() {
+        const dots = dotsContainer.querySelectorAll('.carousel-dot');
+        
+        items.forEach((item, i) => {
+          item.classList.remove(
+            'active', 'prev', 'next', 
+            'far-prev', 'far-next', 'hidden'
+          );
+          
+          const diff = i - currentIndex;
+          
+          if (diff === 0) {
+            item.classList.add('active');
+          } else if (diff === -1 || 
+            (currentIndex === 0 && i === items.length - 1)) {
+            item.classList.add('prev');
+          } else if (diff === 1 || 
+            (currentIndex === items.length - 1 && i === 0)) {
+            item.classList.add('next');
+          } else if (diff === -2 || 
+            diff === items.length - 2) {
+            item.classList.add('far-prev');
+          } else if (diff === 2 || 
+            diff === -(items.length - 2)) {
+            item.classList.add('far-next');
+          } else {
+            item.classList.add('hidden');
+          }
         });
-        projectPrev.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollCarousel('projects-carousel', -1);
+
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentIndex);
         });
+      }
+
+      function goToSlide(index) {
+        currentIndex = (index + items.length) % items.length;
+        updateCarousel();
+        resetAutoPlay();
+      }
+
+      function nextSlide() {
+        goToSlide(currentIndex + 1);
+      }
+
+      function prevSlide() {
+        goToSlide(currentIndex - 1);
+      }
+
+      function startAutoPlay() {
+        autoPlayTimer = setInterval(nextSlide, 4000);
+      }
+
+      function resetAutoPlay() {
+        clearInterval(autoPlayTimer);
+        startAutoPlay();
+      }
+
+      // Button events
+      if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+      if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+
+      // Pause on hover
+      carousel.addEventListener('mouseenter', () => {
+        clearInterval(autoPlayTimer);
+      });
+      carousel.addEventListener('mouseleave', startAutoPlay);
+
+      // Touch/swipe support for mobile
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        clearInterval(autoPlayTimer);
+      }, { passive: true });
+
+      carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) {
+            nextSlide();
+          } else {
+            prevSlide();
+          }
+        }
+        startAutoPlay();
+      }, { passive: true });
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') prevSlide();
+        if (e.key === 'ArrowRight') nextSlide();
+      });
+
+      // Click on side cards to navigate
+      items.forEach((item, i) => {
+        item.addEventListener('click', () => {
+          if (!item.classList.contains('active')) {
+            goToSlide(i);
+          }
+        });
+      });
+
+      // Initialize
+      updateCarousel();
+      startAutoPlay();
     }
 
     /* — CV MODAL — */

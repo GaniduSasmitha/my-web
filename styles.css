@@ -378,17 +378,204 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
 .t-title { font-size: 1.8rem; color: #fff; margin-bottom: 0.5rem; }
 .t-inst { color: var(--text-muted); font-size: 1.1rem; }
 
-/* — PROJECTS — */
+/* — 3D PROJECT CAROUSEL — */
 #projects { background-color: var(--surface); }
 
+.carousel-scene {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  perspective: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.carousel-item {
+  position: absolute;
+  width: 340px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+  border-radius: 8px;
+  transform-style: preserve-3d;
+}
+
+/* Center active card */
+.carousel-item.active {
+  transform: translate(-50%, -50%) 
+    translateZ(120px) 
+    rotateY(0deg);
+  opacity: 1;
+  z-index: 10;
+  filter: brightness(1);
+}
+
+/* Card immediately left of center */
+.carousel-item.prev {
+  transform: translate(-50%, -50%) 
+    translateX(-280px) 
+    translateZ(-80px) 
+    rotateY(45deg);
+  opacity: 0.6;
+  z-index: 5;
+  filter: brightness(0.5);
+  scale: 0.85;
+}
+
+/* Card immediately right of center */
+.carousel-item.next {
+  transform: translate(-50%, -50%) 
+    translateX(280px) 
+    translateZ(-80px) 
+    rotateY(-45deg);
+  opacity: 0.6;
+  z-index: 5;
+  filter: brightness(0.5);
+  scale: 0.85;
+}
+
+/* Cards far left */
+.carousel-item.far-prev {
+  transform: translate(-50%, -50%) 
+    translateX(-480px) 
+    translateZ(-200px) 
+    rotateY(60deg);
+  opacity: 0.2;
+  z-index: 1;
+  filter: brightness(0.3);
+  scale: 0.7;
+}
+
+/* Cards far right */
+.carousel-item.far-next {
+  transform: translate(-50%, -50%) 
+    translateX(480px) 
+    translateZ(-200px) 
+    rotateY(-60deg);
+  opacity: 0.2;
+  z-index: 1;
+  filter: brightness(0.3);
+  scale: 0.7;
+}
+
+/* Hidden cards */
+.carousel-item.hidden {
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Active card glow effect */
+.carousel-item.active .project-card {
+  border-color: rgba(0, 229, 255, 0.4);
+  box-shadow: 
+    0 0 60px rgba(0, 229, 255, 0.15),
+    0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+/* Navigation arrows */
+.carousel-prev,
+.carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.3s ease;
+}
+
+.carousel-prev {
+  left: 0;
+}
+
+.carousel-next {
+  right: 0;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  background: var(--accent);
+  color: var(--bg);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Dot indicators */
+.carousel-dots {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  padding: 0;
+}
+
+.carousel-dot.active {
+  background: var(--accent);
+  width: 20px;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+/* Project card inside carousel adjustments */
+.carousel-item .project-card {
+  width: 340px;
+  height: 440px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--surface);
+}
+
+.carousel-item .project-card::-webkit-scrollbar {
+  width: 4px;
+}
+
+.carousel-item .project-card::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+
+.carousel-item .project-card::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 2px;
+}
+
 .project-card {
-    flex: 0 0 420px !important;
-    width: 420px !important;
-    min-width: 420px !important;
-    max-width: 420px !important;
-    box-sizing: border-box !important;
-    scroll-snap-align: start;
-    flex-shrink: 0 !important;
+    box-sizing: border-box;
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -399,11 +586,6 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
     flex-direction: column;
     justify-content: space-between;
     transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-}
-.project-card:hover, .project-card:focus-within {
-    transform: translateY(-6px);
-    border-color: rgba(0, 229, 255, 0.35);
-    box-shadow: 0 16px 40px rgba(0, 229, 255, 0.08);
 }
 .project-card-header { margin-bottom: 1.2rem; position: relative; z-index: 1; }
 .project-type { color: var(--accent3); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.4rem; display: block; }
@@ -937,8 +1119,36 @@ footer { background: var(--surface); padding: 3rem 10%; border-top: 1px solid rg
     .t-inst { font-size: 0.7rem; }
 
     /* PROJECTS SECTION MOBILE FIX */
-    .cert-card { flex: 0 0 240px !important; width: 240px !important; min-width: 240px !important; max-width: 240px !important; }
-    .project-card { flex: 0 0 320px !important; width: 320px !important; min-width: 320px !important; max-width: 320px !important; padding: 1.5rem 1.3rem; }
+    .carousel-scene {
+      height: 480px;
+    }
+
+    .carousel-item .project-card {
+      width: 300px;
+      height: 420px;
+    }
+
+    .carousel-item.prev {
+      transform: translate(-50%, -50%) 
+        translateX(-200px) 
+        translateZ(-60px) 
+        rotateY(45deg);
+    }
+
+    .carousel-item.next {
+      transform: translate(-50%, -50%) 
+        translateX(200px) 
+        translateZ(-60px) 
+        rotateY(-45deg);
+    }
+
+    .carousel-item.far-prev,
+    .carousel-item.far-next {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .project-card { padding: 1.5rem 1.3rem; }
     .project-card::after { font-size: 4rem; top: -5px; }
     .project-desc { font-size: 0.82rem; line-height: 1.5; margin-bottom: 1.2rem; }
     .project-tags { flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem; }
@@ -988,6 +1198,43 @@ footer { background: var(--surface); padding: 3rem 10%; border-top: 1px solid rg
 }
 
 @media (max-width: 480px) {
+  .carousel-scene {
+    height: 460px;
+    perspective: 800px;
+  }
+
+  .carousel-item .project-card {
+    width: 280px;
+    height: 400px;
+  }
+
+  .carousel-item.prev {
+    transform: translate(-50%, -50%) 
+      translateX(-160px) 
+      translateZ(-40px) 
+      rotateY(40deg);
+    opacity: 0.3;
+    scale: 0.8;
+  }
+
+  .carousel-item.next {
+    transform: translate(-50%, -50%) 
+      translateX(160px) 
+      translateZ(-40px) 
+      rotateY(-40deg);
+    opacity: 0.3;
+    scale: 0.8;
+  }
+
+  .carousel-prev { left: 4px; }
+  .carousel-next { right: 4px; }
+
+  .carousel-prev,
+  .carousel-next {
+    width: 38px;
+    height: 38px;
+  }
+
   .ach-card,
   .achievement-card,
   .skill-card,
