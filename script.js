@@ -161,7 +161,6 @@ function initPortfolio() {
         carousel.querySelectorAll('.carousel-item')
       );
       let currentIndex = 0;
-      let autoPlayTimer = null;
 
       dotsContainer.innerHTML = '';
 
@@ -212,7 +211,6 @@ function initPortfolio() {
       function goToSlide(index) {
         currentIndex = (index + items.length) % items.length;
         updateCarousel();
-        resetAutoPlay();
       }
 
       function nextSlide() {
@@ -223,25 +221,9 @@ function initPortfolio() {
         goToSlide(currentIndex - 1);
       }
 
-      function startAutoPlay() {
-        clearInterval(autoPlayTimer);
-        autoPlayTimer = setInterval(nextSlide, 4000);
-      }
-
-      function resetAutoPlay() {
-        clearInterval(autoPlayTimer);
-        startAutoPlay();
-      }
-
       // Button events
       if (nextBtn) nextBtn.addEventListener('click', (e) => { e.preventDefault(); nextSlide(); });
       if (prevBtn) prevBtn.addEventListener('click', (e) => { e.preventDefault(); prevSlide(); });
-
-      // Pause on hover
-      carousel.addEventListener('mouseenter', () => {
-        clearInterval(autoPlayTimer);
-      });
-      carousel.addEventListener('mouseleave', startAutoPlay);
 
       // Touch/swipe support for mobile
       let touchStartX = 0;
@@ -249,20 +231,18 @@ function initPortfolio() {
 
       carousel.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
-        clearInterval(autoPlayTimer);
       }, { passive: true });
 
       carousel.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
         const diff = touchStartX - touchEndX;
-        if (Math.abs(diff) > 50) {
+        if (Math.abs(diff) > 40) {
           if (diff > 0) {
             nextSlide();
           } else {
             prevSlide();
           }
         }
-        startAutoPlay();
       }, { passive: true });
 
       // Keyboard navigation
@@ -284,7 +264,6 @@ function initPortfolio() {
 
       // Initialize
       updateCarousel();
-      startAutoPlay();
     }
 
     /* — CV MODAL — */
