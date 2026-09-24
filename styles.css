@@ -416,7 +416,8 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
 .carousel-item.active {
   transform: translate(-50%, -50%) 
     translateZ(120px) 
-    rotateY(0deg);
+    rotateY(0deg)
+    scale(1);
   opacity: 1;
   z-index: 10;
   filter: brightness(1);
@@ -427,11 +428,11 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
   transform: translate(-50%, -50%) 
     translateX(-280px) 
     translateZ(-80px) 
-    rotateY(45deg);
+    rotateY(45deg)
+    scale(0.85);
   opacity: 0.6;
   z-index: 5;
   filter: brightness(0.5);
-  scale: 0.85;
 }
 
 /* Card immediately right of center */
@@ -439,11 +440,11 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
   transform: translate(-50%, -50%) 
     translateX(280px) 
     translateZ(-80px) 
-    rotateY(-45deg);
+    rotateY(-45deg)
+    scale(0.85);
   opacity: 0.6;
   z-index: 5;
   filter: brightness(0.5);
-  scale: 0.85;
 }
 
 /* Cards far left */
@@ -451,11 +452,11 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
   transform: translate(-50%, -50%) 
     translateX(-480px) 
     translateZ(-200px) 
-    rotateY(60deg);
+    rotateY(60deg)
+    scale(0.7);
   opacity: 0.2;
   z-index: 1;
   filter: brightness(0.3);
-  scale: 0.7;
 }
 
 /* Cards far right */
@@ -463,11 +464,11 @@ section { padding: 120px 10%; margin: 0 auto; max-width: 1400px; position: relat
   transform: translate(-50%, -50%) 
     translateX(480px) 
     translateZ(-200px) 
-    rotateY(-60deg);
+    rotateY(-60deg)
+    scale(0.7);
   opacity: 0.2;
   z-index: 1;
   filter: brightness(0.3);
-  scale: 0.7;
 }
 
 /* Hidden cards */
@@ -1212,18 +1213,18 @@ footer { background: var(--surface); padding: 3rem 10%; border-top: 1px solid rg
     transform: translate(-50%, -50%) 
       translateX(-160px) 
       translateZ(-40px) 
-      rotateY(40deg);
+      rotateY(40deg)
+      scale(0.8);
     opacity: 0.3;
-    scale: 0.8;
   }
 
   .carousel-item.next {
     transform: translate(-50%, -50%) 
       translateX(160px) 
       translateZ(-40px) 
-      rotateY(-40deg);
+      rotateY(-40deg)
+      scale(0.8);
     opacity: 0.3;
-    scale: 0.8;
   }
 
   .carousel-prev { left: 4px; }

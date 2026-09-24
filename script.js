@@ -156,12 +156,14 @@ function initPortfolio() {
     const nextBtn = document.getElementById('carouselNext');
     const dotsContainer = document.getElementById('carouselDots');
 
-    if (carousel) {
+    if (carousel && dotsContainer) {
       const items = Array.from(
         carousel.querySelectorAll('.carousel-item')
       );
       let currentIndex = 0;
       let autoPlayTimer = null;
+
+      dotsContainer.innerHTML = '';
 
       // Create dots
       items.forEach((_, i) => {
@@ -175,6 +177,7 @@ function initPortfolio() {
 
       function updateCarousel() {
         const dots = dotsContainer.querySelectorAll('.carousel-dot');
+        const total = items.length;
         
         items.forEach((item, i) => {
           item.classList.remove(
@@ -182,21 +185,19 @@ function initPortfolio() {
             'far-prev', 'far-next', 'hidden'
           );
           
-          const diff = i - currentIndex;
+          let diff = i - currentIndex;
+          while (diff > total / 2) diff -= total;
+          while (diff < -total / 2) diff += total;
           
           if (diff === 0) {
             item.classList.add('active');
-          } else if (diff === -1 || 
-            (currentIndex === 0 && i === items.length - 1)) {
+          } else if (diff === -1) {
             item.classList.add('prev');
-          } else if (diff === 1 || 
-            (currentIndex === items.length - 1 && i === 0)) {
+          } else if (diff === 1) {
             item.classList.add('next');
-          } else if (diff === -2 || 
-            diff === items.length - 2) {
+          } else if (diff === -2) {
             item.classList.add('far-prev');
-          } else if (diff === 2 || 
-            diff === -(items.length - 2)) {
+          } else if (diff === 2) {
             item.classList.add('far-next');
           } else {
             item.classList.add('hidden');
@@ -223,6 +224,7 @@ function initPortfolio() {
       }
 
       function startAutoPlay() {
+        clearInterval(autoPlayTimer);
         autoPlayTimer = setInterval(nextSlide, 4000);
       }
 
@@ -232,8 +234,8 @@ function initPortfolio() {
       }
 
       // Button events
-      if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-      if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+      if (nextBtn) nextBtn.addEventListener('click', (e) => { e.preventDefault(); nextSlide(); });
+      if (prevBtn) prevBtn.addEventListener('click', (e) => { e.preventDefault(); prevSlide(); });
 
       // Pause on hover
       carousel.addEventListener('mouseenter', () => {
@@ -265,14 +267,16 @@ function initPortfolio() {
 
       // Keyboard navigation
       document.addEventListener('keydown', (e) => {
+        if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
         if (e.key === 'ArrowLeft') prevSlide();
         if (e.key === 'ArrowRight') nextSlide();
       });
 
       // Click on side cards to navigate
       items.forEach((item, i) => {
-        item.addEventListener('click', () => {
+        item.addEventListener('click', (e) => {
           if (!item.classList.contains('active')) {
+            e.preventDefault();
             goToSlide(i);
           }
         });
